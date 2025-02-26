@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace CodeJobs.Controllers
 {
-    public class LoginController : Controller
+    public class AuthController : Controller
     {
         // GET: Login
         public ActionResult Login()
