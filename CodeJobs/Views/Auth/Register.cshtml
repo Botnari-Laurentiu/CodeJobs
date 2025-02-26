@@ -1,0 +1,74 @@
+﻿@model CodeJobs.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+<link rel="stylesheet" href="@Url.Content("/Content/style.css")" />
+}
+
+<div class="splash">
+    <div class="color-line"></div>
+    <div class="splash-title">
+        <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+        </div>
+    </div>
+</div>
+
+<div class="color-line"></div>
+<div class="register-container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-center m-b-md">
+                <h3>Registration</h3>
+            </div>
+            <div class="hpanel">
+                <div class="panel-body">
+                    <form asp-action="Register" method="post">
+                        <div class="row">
+                            <div class="form-group col-lg-12">
+                                <label asp-for="Username">Username</label>
+                                <input asp-for="Username" class="form-control" />
+                                <span asp-validation-for="Username" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label asp-for="Password">Password</label>
+                                <input asp-for="Password" type="password" class="form-control" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label asp-for="ConfirmPassword">Repeat Password</label>
+                                <input asp-for="ConfirmPassword" type="password" class="form-control" />
+                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label asp-for="Email">Email Address</label>
+                                <input asp-for="Email" class="form-control" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label asp-for="ConfirmEmail">Repeat Email Address</label>
+                                <input asp-for="ConfirmEmail" class="form-control" />
+                                <span asp-validation-for="ConfirmEmail" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-success">Register</button>
+                            <button type="reset" class="btn btn-default">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script src="@Url.Content(" ~ /scripts/validation.js")"></script>
+}
