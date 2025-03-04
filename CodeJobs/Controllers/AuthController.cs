@@ -27,5 +27,26 @@ namespace YourNamespace.Controllers
             // If model validation fails, return the view with validation errors
             return View(model);
         }
+        // GET: /Auth/Login
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        // POST: /Auth/Login
+        [HttpPost]
+        public ActionResult Login(LoginViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                // Authentication logic (e.g., check the user credentials)
+                // If authentication is successful, redirect to the Home page or another page
+
+                return RedirectToAction("Index", "Home");
+            }
+
+            // If model validation fails, return the view with validation errors
+            return View(model);
+        }
     }
 }
