@@ -231,6 +231,7 @@
     <Folder Include="Controllers\" />
     <Folder Include="Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Auth\" />
     <Folder Include="Views\Home\" />
     <Folder Include="Views\Shared\" />
   </ItemGroup>
