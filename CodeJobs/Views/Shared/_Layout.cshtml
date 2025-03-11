@@ -1,41 +1,89 @@
-﻿@using System.Web.Optimization
-<!DOCTYPE html>
-<html>
+﻿<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/Site.css")
-    @Scripts.Render("~/bundles/modernizr")
+    <title>Document</title>
+
+
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">CodeJobs</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
-                @Html.ActionLink("Dashboard", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Jobs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                    </ul>
+                    <form class="d-flex">
+                        <button style="margin-right: 10px;" class="btn btn-primary" type="submit">Sign In</button>
+                        <button class="btn btn-outline-primary" type="submit">Sign Up</button>
+                    </form>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        @RenderBody()
+    </div>
+
+    <footer class="bg-secondary text-white container-fluid">
+        <div class="row" style="padding: 20px;">
+            <div class="col-3">
+                <h4>CodeJobs</h4>
+                <p>Our platform is dedicated to connecting IT professionals with relevant job opportunities. We provide a secure, intuitive, and efficient environment for both employers and employees, supporting career growth and business success.</p>
+                <br>
+                <p>Employers can post jobs, select candidates, and organize interviews. Employees can create a profile, apply for jobs, and interact with employers. Everything is simple and transparent.</p>
+            </div>
+            <div class="col-3">
+                <div style="margin-left: 20px;">
+                    <h4>Useful Links</h4>
+                    <a class="text-white" href="#">Terms & Conditions</a> <br>
+                    <a class="text-white" href="#">Privacy Policy</a> <br>
+                    <a class="text-white" href="#">Support / FAQ</a>
+                </div>
+            </div>
+            <div class="col-3">
+                <h4>Contact</h4>
+                <div style="margin-bottom: 20px;">
+                    <p>Email</p>
+                    <a class="text-white" href="#">alexandru.chirica@gmail.com</a> <br>
+                    <a class="text-white" href="#">laurentiu.botnari@gmail.com</a> <br>
+                    <a class="text-white" href="#">marius.cebotari@gmail.com</a>
+                </div>
+
+                <p>Phone</p>
+                <a class="text-white" href="#">+373 (79) 572237</a> <br>
+
+            </div>
+            <div class="col-3">
+                <h4>Follow us</h4>
+                <a class="text-white" href="#">LinkedIn</a><br>
+                <a class="text-white" href="#">Twitter</a><br>
+                <a class="text-white" href="#">Facebook</a>
+            </div>
+            <div class="justify-content-center d-flex">
+                <p>© 2025 CodeJobs. All rights reserved.</p>
             </div>
         </div>
-    </div>
 
-    <div class="body-content container">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+    </footer>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    <script src="js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -1,7 +1,22 @@
 ﻿
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Home</h2>
+<section>
+    <form class="container d-flex">
+        <input class="form-control me-2 no-auth" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-primary no-auth" type="submit">Search</button>
+    </form>
 
+    <div class="d-flex justify-content-center bg-light">
+        <img src="img/Job-PNG-Clipart-Background.png" class="img-fluid img-home" alt="">
+    </div>
+
+    <div class="container text-center text-dark" style="padding: 50px;">
+        <h1>Welcome to CodeJobs!</h1>
+        <p>Create an account or sign in to see your personalized job recommendations.</p>
+        <button class="btn btn-primary">Get Started</button>
+    </div>
+</section>
