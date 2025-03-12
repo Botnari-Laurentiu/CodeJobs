@@ -21,7 +21,7 @@ namespace YourNamespace.Controllers
                 // Registration logic (e.g., save the user to the database)
                 // If registration is successful, redirect to the Home page or another page
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("HomeAuth", "Home");
             }
 
             // If model validation fails, return the view with validation errors
@@ -42,7 +42,7 @@ namespace YourNamespace.Controllers
                 // Authentication logic (e.g., check the user credentials)
                 // If authentication is successful, redirect to the Home page or another page
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("HomeAuth", "Home");
             }
 
             // If model validation fails, return the view with validation errors
