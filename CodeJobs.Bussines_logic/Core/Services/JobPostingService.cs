@@ -34,5 +34,12 @@ namespace CodeJobs.Business_Logic.Core.Services
             return await _jobPostRepository.GetJobPostById(jobId);
         }
     }
+
+    public interface IJobPostRepository
+    {
+        Task<JobPost> AddJobPost(JobPost jobPost);
+        Task<List<JobPost>> GetAllJobPosts();
+        Task<JobPost> GetJobPostById(int jobId);
+    }
 }
 

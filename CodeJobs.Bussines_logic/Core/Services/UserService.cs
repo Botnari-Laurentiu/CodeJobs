@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CodeJobs.Domain.Entities.User;
 
 namespace CodeJobs.Business_Logic.Core.Services
 {
@@ -31,5 +32,12 @@ namespace CodeJobs.Business_Logic.Core.Services
         {
             return await _userRepository.GetUserById(userId);
         }
+    }
+
+    public interface IUserRepository
+    {
+        Task<ApplicationUser> GetUserByUsername(string username);
+        Task AddUser(ApplicationUser user);
+        Task<ApplicationUser> GetUserById(string userId);
     }
 }
