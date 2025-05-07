@@ -10,6 +10,7 @@ namespace CodeJobs.Domain.Enums
     {
         Admin,
         Employer,
-        JobSeeker
+        JobSeeker,
+         User
     }
 }

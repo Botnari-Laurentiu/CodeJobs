@@ -3,14 +3,17 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace CodeJobs.Models
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext() : base("DefaultConnection") { }
+        public ApplicationDbContext() : base("name=CodeJobsConnection") { }
 
-        public static ApplicationDbContext Create()
+        public DbSet<ApplicationUser> Users { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            return new ApplicationDbContext();
+            base.OnModelCreating(modelBuilder);
         }
+<<<<<<< Updated upstream
 
         public DbSet<JobPost> JobPosts { get; set; }
         public DbSet<JobApplication> JobApplications { get; set; }
@@ -25,3 +28,8 @@ namespace CodeJobs.Models
         }
     }
 }
+=======
+    }
+
+}
+>>>>>>> Stashed changes

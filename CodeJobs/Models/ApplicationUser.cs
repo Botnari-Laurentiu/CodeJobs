@@ -5,19 +5,21 @@ namespace CodeJobs.Models
 {
     public class ApplicationUser : IdentityUser
     {
+        [Key]
+        public string Id { get; set; } // Primary key
         [Required]
         [StringLength(100)]
-        public string FullName { get; set; } 
-
+        public string FullName { get; set; }
+        [Required]
+        [EmailAddress]
         [StringLength(200)]
-        public string CompanyName { get; set; } 
+        public string Email { get; set; }
+        [Required]
+        public string PasswordHash { get; set; } // Store hashed passwords
+        public UserRole Role { get; set; } // Enum for roles (Admin, Employer, JobSeeker)
 
-        [StringLength(500)]
-        public string Resume { get; set; } 
 
-        public UserRole Role { get; set; } 
 
-      
         public ApplicationUser()
         {
             Role = UserRole.JobSeeker; 

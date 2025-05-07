@@ -48,6 +48,25 @@
         </div>
     </div>
 
+    <!-- Job Listings -->
+    <div class="row" style="padding: 20px;">
+        <h1>Current Vacancies</h1>
+
+        @foreach (var jobPost in Model)
+        {
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@jobPost.Title</h5>
+                        <p class="card-text">@jobPost.Description</p>
+                        <a class="btn btn-primary" href="#">Apply Now</a>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+
     <div class="row" style="padding: 20px;">
         <h1>Popular companies</h1>
         <div class="col-3"></div>
