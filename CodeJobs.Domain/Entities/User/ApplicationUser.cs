@@ -1,17 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System.ComponentModel.DataAnnotations;
 using CodeJobs.Domain.Enums;
 
-namespace CodeJobs.Domain.Entities.User
+namespace CodeJobs.Models
 {
-    public class ApplicationUser
+    public class ApplicationUser : IdentityUser
     {
-        public string Id { get; set; }
+        [Required]
+        [StringLength(100)]
         public string FullName { get; set; }
-        public string Email { get; set; }
-        public UserRole Role { get; set; }
+
+        [StringLength(200)]
+        public string CompanyName { get; set; }
+
+        [StringLength(500)]
+        public string Resume { get; set; }
+
+        [Required]
+        public UserRole Role { get; set; } 
+
+        public ApplicationUser()
+        {
+            Role = UserRole.JobSeeker; 
+        }
     }
 }

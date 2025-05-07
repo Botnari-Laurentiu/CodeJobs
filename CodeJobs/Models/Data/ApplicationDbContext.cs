@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using System.Data.Entity;
 
 namespace CodeJobs.Models
 {
@@ -16,8 +12,16 @@ namespace CodeJobs.Models
             return new ApplicationDbContext();
         }
 
-        // Add DbSet for job posts
         public DbSet<JobPost> JobPosts { get; set; }
         public DbSet<JobApplication> JobApplications { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<ApplicationUser>()
+                .Property(u => u.Role)
+                .HasColumnType("int"); 
+        }
     }
 }
