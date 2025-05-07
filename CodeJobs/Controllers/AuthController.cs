@@ -1,11 +1,22 @@
 ﻿using CodeJobs.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity;
 using System.Web.Mvc;
-using CodeJobs.Models; // Import the RegisterViewModel namespace
+using System.Web.Security;
+using System.Data.Entity.Validation;
 
 namespace YourNamespace.Controllers
 {
     public class AuthController : Controller
     {
+        private readonly UserManager<ApplicationUser> _userManager;
+
+        public AuthController()
+        {
+            var userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
+            _userManager = new UserManager<ApplicationUser>(userStore);
+        }
+
         // GET: /Auth/Register
         public ActionResult Register()
         {
@@ -14,19 +25,51 @@ namespace YourNamespace.Controllers
 
         // POST: /Auth/Register
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                // Registration logic (e.g., save the user to the database)
-                // If registration is successful, redirect to the Home page or another page
+                var user = new ApplicationUser
+                {
+                    UserName = model.Username,
+                    Email = model.Email,
+                    FullName = model.Username, 
+                    Role = UserRole.JobSeeker  
+                };
 
-                return RedirectToAction("HomeAuth", "Home");
+                try
+                {
+                    var result = _userManager.Create(user, model.Password);
+
+                    if (result.Succeeded)
+                    {
+                        FormsAuthentication.SetAuthCookie(user.UserName, false); // Autentificare utilizator
+                        return RedirectToAction("HomeAuth", "Home");
+                    }
+                    else
+                    {
+                        foreach (var error in result.Errors)
+                        {
+                            ModelState.AddModelError("", error);
+                        }
+                    }
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            ModelState.AddModelError("", $"Property: {validationError.PropertyName} Error: {validationError.ErrorMessage}");
+                        }
+                    }
+                }
             }
 
-            // If model validation fails, return the view with validation errors
             return View(model);
         }
+
         // GET: /Auth/Login
         public ActionResult Login()
         {
@@ -35,18 +78,33 @@ namespace YourNamespace.Controllers
 
         // POST: /Auth/Login
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
             {
-                // Authentication logic (e.g., check the user credentials)
-                // If authentication is successful, redirect to the Home page or another page
-
-                return RedirectToAction("HomeAuth", "Home");
+                var user = _userManager.Find(model.Email, model.Password);
+                if (user != null)
+                {
+                    FormsAuthentication.SetAuthCookie(user.UserName, false); // Creează cookie-ul de autentificare
+                    return RedirectToAction("HomeAuth", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Invalid email or password.");
+                }
             }
 
-            // If model validation fails, return the view with validation errors
             return View(model);
+        }
+
+        // GET: /Auth/Logout
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login", "Auth");
         }
     }
 }
