@@ -1,8 +1,7 @@
-﻿using CodeJobs.Data;
-using CodeJobs.Models;
+﻿using CodeJobs.Models;
 using System.Linq;
 using System.Web.Mvc;
-using ApplicationDbContext = CodeJobs.Data.ApplicationDbContext;
+using ApplicationDbContext = CodeJobs.Models.ApplicationDbContext;
 
 namespace CodeJobs.Controllers
 {
@@ -27,5 +26,6 @@ namespace CodeJobs.Controllers
             var jobPosts = _context.JobPosts.ToList();
             return View(jobPosts);
         }
+
     }
 }

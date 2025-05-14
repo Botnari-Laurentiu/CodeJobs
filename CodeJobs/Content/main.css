@@ -1,0 +1,22 @@
+
+.img-home {
+    max-width: 50%;
+    height: auto;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    padding: 20px;
+}
+
+.no-auth {
+    padding: 16px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.img-bio {
+    width: 250px;
+    height: 250px;
+}

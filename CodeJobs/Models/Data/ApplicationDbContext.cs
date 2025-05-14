@@ -8,13 +8,6 @@ namespace CodeJobs.Models
         public ApplicationDbContext() : base("name=CodeJobsConnection") { }
 
         public DbSet<ApplicationUser> Users { get; set; }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-        }
-<<<<<<< Updated upstream
-
         public DbSet<JobPost> JobPosts { get; set; }
         public DbSet<JobApplication> JobApplications { get; set; }
 
@@ -24,12 +17,7 @@ namespace CodeJobs.Models
 
             modelBuilder.Entity<ApplicationUser>()
                 .Property(u => u.Role)
-                .HasColumnType("int"); 
+                .HasColumnType("int");
         }
     }
 }
-=======
-    }
-
-}
->>>>>>> Stashed changes
