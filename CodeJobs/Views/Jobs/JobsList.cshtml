@@ -1,0 +1,25 @@
+@{
+    ViewBag.Title = "Jobs List";
+    Layout = "~/Views/Shared/_LayoutAuth.cshtml";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4">Available Jobs</h2>
+
+    <template id="job-template">
+        <div class="col-md-4 mb-4">
+            <div class="card shadow h-100">
+                <div class="card-body">
+                    <h5 class="card-title">[TITLE]</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">[COMPANY]</h6>
+                    <p class="card-text">
+                        <strong>Location:</strong> [LOCATION] <br>
+                        <strong>Type:</strong> [TYPE]
+                    </p>
+                    <a href="#" class="btn btn-primary btn-sm">More</a>
+                </div>
+            </div>
+        </div>
+    </template>
+
+</div>

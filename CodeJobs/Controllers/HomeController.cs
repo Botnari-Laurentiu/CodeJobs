@@ -27,5 +27,36 @@ namespace CodeJobs.Controllers
             return View(jobPosts);
         }
 
+        //ABOUT PAGE
+        public ActionResult About()
+        {
+            return View();
+        }
+
+        //ABOUT CONTACT
+        public ActionResult Contact()
+        {
+            return View();
+        }
+
+        //ABOUT TERMS
+        public ActionResult Terms()
+        {
+            return View();
+        }
+
+        //ABOUT HELP
+        public ActionResult Help()
+        {
+            return View();
+        }
+
+        //ABOUT PRIVACY
+        public ActionResult Privacy()
+        {
+            return View();
+        }
+
+
     }
 }

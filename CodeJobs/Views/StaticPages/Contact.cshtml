@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_LayoutAuth.cshtml";
+}
+
+<div class="container mt-3 p-4 w-75">
+    <h2>Contact Us</h2>
+    <div class="container mb-5 p-4 rounded shadow bg-light">
+        <p>Suntem aici să te ajutăm! Pentru orice întrebare sau suport, ne poți contacta prin următoarele metode:</p>
+
+        <h4 class="text-primary mt-4 mb-3">Email</h4>
+        <p><a href="mailto:support@codejobs.com">support@codejobs.com</a></p>
+
+        <h4 class="text-primary mt-4 mb-3">Telefon</h4>
+        <p>+1 234 567 890</p>
+
+        <h4 class="text-primary mt-4 mb-3">Adresă</h4>
+        <p>Strada Exemplu 123, Chișinău, Moldova</p>
+
+        <h4 class="text-primary mt-4 mb-3">Formular de contact</h4>
+        <form>
+            <div class="mb-3">
+                <label for="name" class="form-label">Nume</label>
+                <input type="text" class="form-control" id="name" placeholder="Numele tău" />
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="email@exemplu.com" />
+            </div>
+            <div class="mb-3">
+                <label for="message" class="form-label">Mesaj</label>
+                <textarea class="form-control" id="message" rows="4" placeholder="Scrie mesajul tău aici..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Trimite</button>
+        </form>
+    </div>
+</div>

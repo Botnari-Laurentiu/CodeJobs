@@ -150,6 +150,7 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\Images\CodeJobs.png" />
     <Content Include="Content\main.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\accordion.css" />
@@ -273,7 +274,16 @@
     <Content Include="Views\Shared\_LayoutAuth.cshtml" />
     <Content Include="Views\Home\HomeAuth.cshtml" />
     <Content Include="Views\Admin\Dashboard.cshtml" />
-    <Content Include="Views\Employer\JobAdd.cshtml" />
+    <Content Include="Views\Jobs\JobAdd.cshtml" />
+    <Content Include="Views\StaticPages\About.cshtml" />
+    <Content Include="Views\StaticPages\Contact.cshtml" />
+    <Content Include="Views\StaticPages\Terms.cshtml" />
+    <Content Include="Views\StaticPages\Help.cshtml" />
+    <Content Include="Views\StaticPages\Privacy.cshtml" />
+    <Content Include="Views\Jobs\UserAdd.cshtml" />
+    <Content Include="Views\Jobs\JobsList.cshtml" />
+    <Content Include="Views\Jobs\JobDetails.cshtml" />
+    <Content Include="Views\Jobs\MyProfile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -283,7 +293,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\registerViewModel\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

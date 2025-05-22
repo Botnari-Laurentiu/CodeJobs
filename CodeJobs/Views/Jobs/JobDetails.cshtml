@@ -1,0 +1,37 @@
+@{
+    ViewBag.Title = "Job Details";
+    Layout = "~/Views/Shared/_LayoutAuth.cshtml";
+}
+
+<div class="container mt-5">
+    <h2 id="jobTitle">Job Title</h2>
+    <h5 id="companyName" class="text-muted">Company</h5>
+    <p id="jobDescription">Job description will appear here.</p>
+    <p><strong>Location:</strong> <span id="location"></span></p>
+    <p><strong>Type:</strong> <span id="jobType"></span></p>
+    <p><strong>Salary:</strong> <span id="salary"></span></p>
+    <p><strong>Contact Email:</strong> <span id="contactEmail"></span></p>
+    <a href="jobslist.html" class="btn btn-secondary mt-3">Back to Jobs List</a>
+</div>
+
+// Exemplu de joburi hardcodate
+    const jobs = {
+      1: {
+        title: "Frontend Developer",
+        company: "Google",
+        description: "Build awesome user interfaces...",
+        location: "Remote",
+        type: "Full-time",
+        salary: "1200-1500 USD/month",
+        contactEmail: "hr@google.com"
+      },
+      2: {
+        title: "Backend Developer",
+        company: "Microsoft",
+        description: "Develop backend services...",
+        location: "Hybrid",
+        type: "Internship",
+        salary: "800-1000 USD/month",
+        contactEmail: "jobs@microsoft.com"
+      }
+    };

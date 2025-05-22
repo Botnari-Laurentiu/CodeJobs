@@ -1,0 +1,30 @@
+@{
+    ViewBag.Title = "User Add";
+    Layout = "~/Views/Shared/_LayoutAuth.cshtml";
+}
+
+<div class="container mt-3 p-4 w-75">
+    <h2>My Profile</h2>
+    <div class="container mb-5 p-4 rounded shadow bg-light">
+        <h4 class="text-primary">Personal info</h4>
+        <p><strong>First name:</strong> @Model.FirstName</p>
+        <p><strong>Last name:</strong> @Model.LastName</p>
+        <p><strong>Email:</strong> @Model.Email</p>
+        <p><strong>Phone:</strong> @Model.Phone</p>
+        <p><strong>Bio:</strong> @Model.Bio</p>
+
+        <hr />
+
+        <h4 class="text-primary">Professional info</h4>
+        <p><strong>Position:</strong> @Model.JobTitle</p>
+        <p><strong>Skills:</strong> @Model.Skills</p>
+        <p><strong>Years of Experience:</strong> @Model.ExperienceYears</p>
+        <p><strong>Employment Type:</strong> @Model.EmploymentType</p>
+        <p><strong>Preferred Work Location:</strong> @Model.PreferredLocation</p>
+        <p>
+            <strong>LinkedIn: </strong>@Model.PreferredLocation</p.>
+            <div class="d-flex justify-content-end mt-4">
+                <a href="/Employee/Edit/@Model.Id" class="btn btn-outline-primary">Edit Profile</a>
+            </div>
+    </div>
+</div>

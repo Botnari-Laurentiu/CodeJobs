@@ -1,0 +1,73 @@
+@{
+    ViewBag.Title = "Add Job";
+    Layout = "~/Views/Shared/_SimpleLayout.cshtml";
+}
+<div class="container-fluid">
+    <form class="border p-4 rounded shadow w-50 mx-auto bg-white mb-5 mt-5">
+        <div class="row">
+
+            <h2>Basic Job Information</h2>
+            <div class="mb-3">
+                <label for="jobTitle" class="form-label">Job Title *</label>
+                <input type="text" id="jobTitle" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="jobDescription" class="form-label">Job Description *</label>
+                <textarea id="jobDescription" class="form-control" rows="4" required></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="requiredSkills" class="form-label">Required Skills *</label>
+                <input type="text" id="requiredSkills" class="form-control" placeholder="e.g. C#, ASP.NET, SQL" required>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="experienceLevel" class="form-label">Experience Level *</label>
+                    <select id="experienceLevel" class="form-select" required>
+                        <option value="">Select</option>
+                        <option>Entry-level</option>
+                        <option>Mid-level</option>
+                        <option>Senior</option>
+                    </select>
+                </div>
+
+                <div class="col">
+                    <label for="employmentType" class="form-label">Employment Type *</label>
+                    <select id="employmentType" class="form-select" required>
+                        <option value="">Select</option>
+                        <option>Full-time</option>
+                        <option>Part-time</option>
+                        <option>Internship</option>
+                        <option>Contract</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="location" class="form-label">Location</label>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>In office</option>
+                    <option value="1">Remote</option>
+                    <option value="2">Hybrid</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="salaryRange" class="form-label">Salary Range</label>
+                <input type="text" id="salaryRange" class="form-control" placeholder="e.g. 1000-1500 USD/month">
+            </div>
+
+            <div class="mb-3">
+                <label for="contactEmail" class="form-label">Contact Email *</label>
+                <input type="email" id="contactEmail" class="form-control" required>
+            </div>
+
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary">Post Job</button>
+            </div>
+
+        </div>
+    </form>
+</div>

@@ -5,13 +5,22 @@
 }
 
 <section>
-    <form class="container d-flex">
-        <input class="form-control me-2 no-auth" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-primary no-auth" type="submit">Search</button>
+    <form class="container d-flex my-4 justify-content-center" role="search" action="#">
+        <label class="visually-hidden" for="searchInput">Search</label>
+        <input id="searchInput"
+               class="form-control me-2 rounded-pill shadow-sm"
+               type="search"
+               placeholder="Search jobs..."
+               aria-label="Search"
+               style="max-width: 1200px;" />
+        <button class="btn btn-primary rounded-pill px-4" type="submit" style="box-shadow: 0 4px 8px rgba(0,0,0,0.15); transition: background-color 0.3s;">
+            Search
+        </button>
     </form>
 
+
     <div class="d-flex justify-content-center bg-light">
-        <img src="img/Job-PNG-Clipart-Background.png" class="img-fluid img-home" alt="">
+        <img src="~/Content/Images/CodeJobs.png" class="img-fluid img-home" alt="Job illustration" />
     </div>
 
     <div class="container text-center text-dark" style="padding: 50px;">
