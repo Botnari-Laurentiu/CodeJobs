@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CodeJobs.Domain.Enums;
 using CodeJobs.Domain.Entities.User;
+using CodeJobs.Models;
 
 namespace CodeJobs.Domain.Entities
 {

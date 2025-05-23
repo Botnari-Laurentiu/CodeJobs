@@ -30,31 +30,31 @@ namespace CodeJobs.Controllers
         //ABOUT PAGE
         public ActionResult About()
         {
-            return View();
+            return View("~/Views/StaticPages/About.cshtml");
         }
 
         //ABOUT CONTACT
         public ActionResult Contact()
         {
-            return View();
+            return View("~/Views/StaticPages/Contact.cshtml");
         }
 
         //ABOUT TERMS
         public ActionResult Terms()
         {
-            return View();
+            return View("~/Views/StaticPages/Terms.cshtml");
         }
 
         //ABOUT HELP
         public ActionResult Help()
         {
-            return View();
+            return View("~/Views/StaticPages/Help.cshtml");
         }
 
         //ABOUT PRIVACY
         public ActionResult Privacy()
         {
-            return View();
+            return View("~/Views/StaticPages/Privacy.cshtml");
         }
 
 
