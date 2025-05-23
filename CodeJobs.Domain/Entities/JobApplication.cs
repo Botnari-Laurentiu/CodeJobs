@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+using System.ComponentModel.DataAnnotations.Schema;
+using CodeJobs.Domain.Entities.User;
 
-namespace CodeJobs.Models
+namespace CodeJobs.Domain.Entities
 {
     public class JobApplication
     {
@@ -23,10 +21,16 @@ namespace CodeJobs.Models
 
         [ForeignKey("ApplicantId")]
         public virtual ApplicationUser Applicant { get; set; }
+
         [Required]
-        public DateTime AppliedDate { get; set; } = DateTime.Now;
+        public DateTime AppliedDate { get; set; }
 
         [StringLength(1000)]
         public string CoverLetter { get; set; }
+
+        public JobApplication()
+        {
+            AppliedDate = DateTime.Now;
+        }
     }
 }

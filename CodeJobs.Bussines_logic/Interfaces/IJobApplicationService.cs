@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CodeJobs.Domain.Entities;
-using CodeJobs.Models;
 
 namespace CodeJobs.Bussines_Logic.Interfaces
 {

@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 using CodeJobs.Business_Logic.Interfaces;
 using CodeJobs.Domain.Entities.User;
-using CodeJobs.Models;
 
 namespace CodeJobs.Business_Logic.Interfaces
 {

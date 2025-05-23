@@ -196,8 +196,10 @@
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\EmployerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Filters\AdminModAttribute.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -251,6 +253,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\RegisterViewModel.cs" />
+    <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -280,6 +283,7 @@
     <Content Include="Views\Jobs\JobsList.cshtml" />
     <Content Include="Views\Jobs\JobDetails.cshtml" />
     <Content Include="Views\Jobs\MyProfile.cshtml" />
+    <Content Include="Views\Admin\ManageUsers.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

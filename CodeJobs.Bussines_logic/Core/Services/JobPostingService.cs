@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using CodeJobs.Domain.Entities;
 using CodeJobs.Business_Logic.Interfaces;
-using CodeJobs.Models;
 
 namespace CodeJobs.Business_Logic.Core.Services
 {

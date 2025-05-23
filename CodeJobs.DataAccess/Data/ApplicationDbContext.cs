@@ -1,15 +1,14 @@
 ﻿using System.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using CodeJobs.Domain.Entities.User;
 using CodeJobs.Domain.Entities;
-using CodeJobs.Models;
 
 namespace CodeJobs.DataAccess
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext() : base("name=CodeJobsConnection") { }
 
-        public DbSet<ApplicationUser> Users { get; set; }
         public DbSet<JobPost> JobPosts { get; set; }
         public DbSet<JobApplication> JobApplications { get; set; }
 

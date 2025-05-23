@@ -1,12 +1,15 @@
-﻿using CodeJobs.Models;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity;
-using System.Web.Mvc;
-using System.Web.Security;
 using System.Data.Entity.Validation;
+using System.Linq;
+using System.Web.Mvc;
+using System.Web.Security;  // pentru FormsAuthentication
 using CodeJobs.DataAccess;
+using CodeJobs.Domain.Entities.User;
+using CodeJobs.Domain.Enums;
+using CodeJobs.Models;
 
-namespace YourNamespace.Controllers
+namespace CodeJobs.Controllers
 {
     public class AuthController : Controller
     {
@@ -35,8 +38,8 @@ namespace YourNamespace.Controllers
                 {
                     UserName = model.Username,
                     Email = model.Email,
-                    FullName = model.Username, 
-                    Role = UserRole.JobSeeker  
+                    FullName = model.Username,
+                    Role = UserRole.User
                 };
 
                 try
@@ -45,8 +48,8 @@ namespace YourNamespace.Controllers
 
                     if (result.Succeeded)
                     {
-                        FormsAuthentication.SetAuthCookie(user.UserName, false); // Autentificare utilizator
-                        return RedirectToAction("HomeAuth", "Home");
+                        // Nu autentificăm automat, redirecționăm la login
+                        return RedirectToAction("Login", "Auth");
                     }
                     else
                     {
@@ -84,10 +87,11 @@ namespace YourNamespace.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = _userManager.Find(model.Email, model.Password);
-                if (user != null)
+                var user = _userManager.Users.FirstOrDefault(u => u.Email == model.Email);
+                if (user != null && _userManager.CheckPassword(user, model.Password))
                 {
-                    FormsAuthentication.SetAuthCookie(user.UserName, false); // Creează cookie-ul de autentificare
+                    // Folosim FormsAuthentication pentru a crea cookie de autentificare
+                    FormsAuthentication.SetAuthCookie(user.UserName, false);
                     return RedirectToAction("HomeAuth", "Home");
                 }
                 else
@@ -99,7 +103,7 @@ namespace YourNamespace.Controllers
             return View(model);
         }
 
-        // GET: /Auth/Logout
+        // POST: /Auth/Logout
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Logout()

@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+using CodeJobs.Domain.Entities.User;
 
-namespace CodeJobs.Models
+namespace CodeJobs.Domain.Entities
 {
     public class JobPost
     {
@@ -13,7 +11,7 @@ namespace CodeJobs.Models
 
         [Required]
         [StringLength(200)]
-        public string Title { get; set; } 
+        public string Title { get; set; }
 
         [Required]
         public string Description { get; set; }
@@ -21,9 +19,14 @@ namespace CodeJobs.Models
         [Required]
         public string CompanyName { get; set; }
 
-        public DateTime PostedDate { get; set; } = DateTime.Now;
+        public DateTime PostedDate { get; set; }
 
         public string EmployerId { get; set; }
         public virtual ApplicationUser Employer { get; set; }
+
+        public JobPost()
+        {
+            PostedDate = DateTime.Now;
+        }
     }
 }

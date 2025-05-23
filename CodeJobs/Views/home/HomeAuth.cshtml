@@ -1,3 +1,4 @@
+﻿@model IEnumerable<CodeJobs.Domain.Entities.JobPost>
 @{
     ViewBag.Title = "Home Auth";
     Layout = "~/Views/Shared/_LayoutAuth.cshtml";
@@ -5,7 +6,7 @@
 
 <!-- HERO SECTION -->
 <section>
-    <div class="container-fluid p-5 bg-primary text-white text-center">
+    <div class="container-fluid bg-primary p-5 text-center text-white">
         <h1>Find Your IT Job or Recruit Top Talent!</h1>
         <p>Connecting IT professionals with top employers. Discover opportunities or hire skilled developers today.</p>
         <a href="#" class="btn btn-outline-light me-2">Find Jobs</a>
@@ -13,10 +14,10 @@
     </div>
 
     <!-- SEARCH BAR -->
-    <form class="container d-flex my-4 justify-content-center" role="search" action="#">
+    <form class="d-flex justify-content-center container my-4" role="search" action="#">
         <label class="visually-hidden" for="searchInput">Search</label>
         <input id="searchInput"
-               class="form-control me-2 rounded-pill shadow-sm"
+               class="form-control rounded-pill me-2 shadow-sm"
                type="search"
                placeholder="Search jobs..."
                aria-label="Search"
@@ -30,35 +31,30 @@
     <div class="container">
         <h2 class="mb-4">Current Vacancies</h2>
         <div class="row" id="jobs-container">
-
-            <!-- JOB CARD EXAMPLE -->
-            <div class="col-md-4 mb-4">
-                <div class="card shadow h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Frontend Developer</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Google</h6>
-                        <p class="card-text">
-                            <strong>Location:</strong> Remote<br>
-                            <strong>Type:</strong> Full-time
-                        </p>
-                        <a href="job-details.html?id=1" class="btn btn-primary btn-sm">More</a>
-                    </div>
-                </div>
-            </div>
-
-            @foreach (var jobPost in Model)
+            @if (Model != null && Model.Any())
             {
-                <div class="col-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">@jobPost.Title</h5>
-                            <p class="card-text">@jobPost.Description</p>
-                            <a class="btn btn-primary" href="#">Apply Now</a>
+                foreach (var jobPost in Model)
+                {
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow">
+                            <div class="card-body">
+                                <h5 class="card-title">@jobPost.Title</h5>
+                                <h6 class="card-subtitle text-muted mb-2">@jobPost.CompanyName</h6>
+                                <p class="card-text">
+                                    @jobPost.Description
+                                </p>
+                                <a class="btn btn-primary btn-sm" href="#">Apply Now</a>
+                            </div>
                         </div>
                     </div>
+                }
+            }
+            else
+            {
+                <div class="col-12">
+                    <p>No job posts available.</p>
                 </div>
             }
-
         </div>
     </div>
 </section>
