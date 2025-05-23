@@ -1,7 +1,7 @@
-﻿using CodeJobs.Models;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
-using ApplicationDbContext = CodeJobs.Models.ApplicationDbContext;
+using CodeJobs.DataAccess;
+using CodeJobs.Domain.Entities;
 
 namespace CodeJobs.Controllers
 {
@@ -27,36 +27,34 @@ namespace CodeJobs.Controllers
             return View(jobPosts);
         }
 
-        //ABOUT PAGE
+        // ABOUT PAGE
         public ActionResult About()
         {
             return View("~/Views/StaticPages/About.cshtml");
         }
 
-        //ABOUT CONTACT
+        // ABOUT CONTACT
         public ActionResult Contact()
         {
             return View("~/Views/StaticPages/Contact.cshtml");
         }
 
-        //ABOUT TERMS
+        // ABOUT TERMS
         public ActionResult Terms()
         {
             return View("~/Views/StaticPages/Terms.cshtml");
         }
 
-        //ABOUT HELP
+        // ABOUT HELP
         public ActionResult Help()
         {
             return View("~/Views/StaticPages/Help.cshtml");
         }
 
-        //ABOUT PRIVACY
+        // ABOUT PRIVACY
         public ActionResult Privacy()
         {
             return View("~/Views/StaticPages/Privacy.cshtml");
         }
-
-
     }
 }

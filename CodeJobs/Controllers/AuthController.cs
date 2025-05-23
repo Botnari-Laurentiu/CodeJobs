@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity;
 using System.Web.Mvc;
 using System.Web.Security;
 using System.Data.Entity.Validation;
+using CodeJobs.DataAccess;
 
 namespace YourNamespace.Controllers
 {

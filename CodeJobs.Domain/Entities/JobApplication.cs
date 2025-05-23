@@ -1,24 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CodeJobs.Domain.Enums;
-using CodeJobs.Domain.Entities.User;
-using CodeJobs.Models;
+using System.Web;
 
-namespace CodeJobs.Domain.Entities
+namespace CodeJobs.Models
 {
     public class JobApplication
     {
+        [Key]
         public int Id { get; set; }
-        public int JobPostId { get; set; }
-        public string ApplicantId { get; set; }
-        public string CoverLetter { get; set; }
-        public ApplicationStatus Status { get; set; }
 
-        public virtual ApplicationUser Applicant { get; set; }
+        [Required]
+        public int JobPostId { get; set; }
+
+        [ForeignKey("JobPostId")]
         public virtual JobPost JobPost { get; set; }
+
+        [Required]
+        public string ApplicantId { get; set; }
+
+        [ForeignKey("ApplicantId")]
+        public virtual ApplicationUser Applicant { get; set; }
+        [Required]
+        public DateTime AppliedDate { get; set; } = DateTime.Now;
+
+        [StringLength(1000)]
+        public string CoverLetter { get; set; }
     }
 }
-

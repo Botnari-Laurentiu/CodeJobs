@@ -54,6 +54,7 @@
     <Compile Include="Core\Services\JobApplicationService.cs" />
     <Compile Include="Core\Services\JobPostingService.cs" />
     <Compile Include="Core\Services\UserService.cs" />
+    <Compile Include="Interfaces\IJobApplicationRepository.cs" />
     <Compile Include="Interfaces\IJobApplicationService.cs" />
     <Compile Include="Interfaces\IJobPostService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />

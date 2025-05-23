@@ -1,7 +1,9 @@
 ﻿using System.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using CodeJobs.Domain.Entities;
+using CodeJobs.Models;
 
-namespace CodeJobs.Models
+namespace CodeJobs.DataAccess
 {
     public class ApplicationDbContext : DbContext
     {

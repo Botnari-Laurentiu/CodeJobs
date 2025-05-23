@@ -198,10 +198,6 @@
     <Content Include="Global.asax" />
     <Compile Include="Controllers\EmployerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Models\JobApplication.cs" />
-    <Compile Include="Models\JobPost.cs" />
-    <Compile Include="Models\Data\ApplicationDbContext.cs" />
-    <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -293,6 +289,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CodeJobs.DataAccess\CodeJobs.DataAccess.csproj">
+      <Project>{899982e8-332f-45e2-ac1f-617b39565178}</Project>
+      <Name>CodeJobs.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CodeJobs.Domain\CodeJobs.Domain.csproj">
+      <Project>{3098C21F-92C3-48D9-8AFE-B9B536A7ED8C}</Project>
+      <Name>CodeJobs.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
