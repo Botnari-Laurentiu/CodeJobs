@@ -48,7 +48,6 @@ namespace CodeJobs.Controllers
 
                     if (result.Succeeded)
                     {
-                        // Nu autentificăm automat, redirecționăm la login
                         return RedirectToAction("Login", "Auth");
                     }
                     else
@@ -90,7 +89,6 @@ namespace CodeJobs.Controllers
                 var user = _userManager.Users.FirstOrDefault(u => u.Email == model.Email);
                 if (user != null && _userManager.CheckPassword(user, model.Password))
                 {
-                    // Folosim FormsAuthentication pentru a crea cookie de autentificare
                     FormsAuthentication.SetAuthCookie(user.UserName, false);
                     return RedirectToAction("HomeAuth", "Home");
                 }
@@ -109,7 +107,7 @@ namespace CodeJobs.Controllers
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Login", "Auth");
+            return RedirectToAction("Index", "Home");
         }
     }
 }
