@@ -62,6 +62,10 @@
     <Compile Include="Migrations\202505231836545_InitialCreate.Designer.cs">
       <DependentUpon>202505231836545_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202505241623475_AddExtraFieldsToJobPost.cs" />
+    <Compile Include="Migrations\202505241623475_AddExtraFieldsToJobPost.Designer.cs">
+      <DependentUpon>202505241623475_AddExtraFieldsToJobPost.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -78,6 +82,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202505231836545_InitialCreate.resx">
       <DependentUpon>202505231836545_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202505241623475_AddExtraFieldsToJobPost.resx">
+      <DependentUpon>202505241623475_AddExtraFieldsToJobPost.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
