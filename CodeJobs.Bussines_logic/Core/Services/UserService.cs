@@ -1,43 +1,52 @@
-﻿using CodeJobs.Business_Logic.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Threading.Tasks;
+using CodeJobs.DataAccess;
 using CodeJobs.Domain.Entities.User;
+using CodeJobs.Domain.Interfaces;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace CodeJobs.Business_Logic.Core.Services
+namespace CodeJobs.Business_Logic.Services
 {
     public class UserService : IUserService
     {
-        private readonly IUserRepository _userRepository;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public UserService(IUserRepository userRepository)
+        public UserService(ApplicationDbContext context)
         {
-            _userRepository = userRepository;
+            var userStore = new UserStore<ApplicationUser>(context);
+            _userManager = new UserManager<ApplicationUser>(userStore);
         }
 
         public async Task<ApplicationUser> AuthenticateUser(string username, string password)
         {
-            return await _userRepository.GetUserByUsername(username);
+            // Găsește userul după username
+            var user = await _userManager.FindByNameAsync(username);
+            if (user != null && await _userManager.CheckPasswordAsync(user, password))
+                return user;
+            return null;
         }
 
-        public async Task<ApplicationUser> RegisterUser(ApplicationUser user)
+        public Task<ApplicationUser> RegisterUser(ApplicationUser user)
         {
-            await _userRepository.AddUser(user);
-            return user;
+            throw new System.NotImplementedException();
+        }
+
+        public async Task<ApplicationUser> RegisterUser(ApplicationUser user, string password)
+        {
+            var result = await _userManager.CreateAsync(user, password);
+            return result.Succeeded ? user : null;
         }
 
         public async Task<ApplicationUser> GetUserById(string userId)
         {
-            return await _userRepository.GetUserById(userId);
+            return await _userManager.FindByIdAsync(userId);
         }
-    }
 
-    public interface IUserRepository
-    {
-        Task<ApplicationUser> GetUserByUsername(string username);
-        Task AddUser(ApplicationUser user);
-        Task<ApplicationUser> GetUserById(string userId);
+        public async Task<List<ApplicationUser>> GetAllUsers()
+        {
+            return await _userManager.Users.ToListAsync();
+        }
     }
 }

@@ -1,25 +1,30 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
-using CodeJobs.Domain.Entities.User;
+using CodeJobs.Domain.Interfaces;
 using CodeJobs.Filters;
 using CodeJobs.Models;
-using CodeJobs.DataAccess; // Assuming ApplicationDbContext is here
 
 namespace CodeJobs.Controllers
 {
     [AdminMod]
     public class AdminController : Controller
     {
-        private readonly ApplicationDbContext db = new ApplicationDbContext();
+        private readonly IUserService _userService;
+
+        public AdminController(IUserService userService)
+        {
+            _userService = userService;
+        }
 
         public ActionResult Dashboard()
         {
             return View();
         }
 
-        public ActionResult ManageUsers()
+        public async Task<ActionResult> ManageUsers()
         {
-            var users = db.Users.ToList();
+            var users = await _userService.GetAllUsers();
 
             var model = users.Select(u => new UserViewModel
             {
@@ -40,15 +45,6 @@ namespace CodeJobs.Controllers
         public ActionResult DeleteUser(string id)
         {
             return HttpNotFound("Delete functionality is not implemented.");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

@@ -1,17 +1,16 @@
-﻿using System.Linq;
+﻿using System.Threading.Tasks;
 using System.Web.Mvc;
-using CodeJobs.DataAccess;
-using CodeJobs.Domain.Entities;
+using CodeJobs.Domain.Interfaces;
 
 namespace CodeJobs.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IJobPostService _jobPostService;
 
-        public HomeController()
+        public HomeController(IJobPostService jobPostService)
         {
-            _context = new ApplicationDbContext();
+            _jobPostService = jobPostService;
         }
 
         // GET: Home No Auth
@@ -21,9 +20,9 @@ namespace CodeJobs.Controllers
         }
 
         [Authorize]
-        public ActionResult HomeAuth()
+        public async Task<ActionResult> HomeAuth()
         {
-            var jobPosts = _context.JobPosts.ToList();
+            var jobPosts = await _jobPostService.GetAllJobPosts();
             return View(jobPosts);
         }
 

@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
-using CodeJobs.Bussines_Logic.Interfaces;
 using CodeJobs.Domain.Entities;
+using CodeJobs.Domain.Interfaces;
 
 namespace CodeJobs.Business_Logic.Core.Services
 {
