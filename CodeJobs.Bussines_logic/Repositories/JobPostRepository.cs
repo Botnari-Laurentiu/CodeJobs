@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Threading.Tasks;
+using CodeJobs.Business_Logic.Interfaces;
+using CodeJobs.DataAccess.Data;
 using CodeJobs.Domain.Entities;
-using CodeJobs.DataAccess;
-using CodeJobs.Domain.Interfaces;
 
-namespace CodeJobs.Business_Logic.Core.Services
+namespace CodeJobs.Business_Logic.Repositories
 {
     public class JobPostRepository : IJobPostRepository
     {

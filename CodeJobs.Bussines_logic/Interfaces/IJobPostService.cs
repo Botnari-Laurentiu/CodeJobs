@@ -2,11 +2,11 @@
 using System.Threading.Tasks;
 using CodeJobs.Domain.Entities;
 
-namespace CodeJobs.Domain.Interfaces
+namespace CodeJobs.Business_Logic.Interfaces
 {
-    public interface IJobPostRepository
+    public interface IJobPostService
     {
-        Task<JobPost> AddJobPost(JobPost jobPost);
+        Task<JobPost> CreateJobPost(JobPost jobPost);
         Task<List<JobPost>> GetAllJobPosts();
         Task<JobPost> GetJobPostById(int jobId);
     }

@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Threading.Tasks;
-using CodeJobs.DataAccess;
+using CodeJobs.Business_Logic.Interfaces;
+using CodeJobs.DataAccess.Data;
 using CodeJobs.Domain.Entities.User;
-using CodeJobs.Domain.Interfaces;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace CodeJobs.Business_Logic.Services
+namespace CodeJobs.Business_Logic.Core.Services
 {
     public class UserService : IUserService
     {
@@ -21,16 +21,15 @@ namespace CodeJobs.Business_Logic.Services
 
         public async Task<ApplicationUser> AuthenticateUser(string username, string password)
         {
-            // Găsește userul după username
             var user = await _userManager.FindByNameAsync(username);
             if (user != null && await _userManager.CheckPasswordAsync(user, password))
                 return user;
             return null;
         }
 
-        public Task<ApplicationUser> RegisterUser(ApplicationUser user)
+        public async Task<ApplicationUser> RegisterUser(ApplicationUser user)
         {
-            throw new System.NotImplementedException();
+            throw new System.NotImplementedException("Use RegisterUser(ApplicationUser user, string password)");
         }
 
         public async Task<ApplicationUser> RegisterUser(ApplicationUser user, string password)

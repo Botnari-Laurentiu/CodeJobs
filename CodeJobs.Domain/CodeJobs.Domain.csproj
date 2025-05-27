@@ -60,14 +60,8 @@
     <Compile Include="Entities\JobApplication.cs" />
     <Compile Include="Entities\JobPost.cs" />
     <Compile Include="Entities\User\ApplicationUser.cs" />
-    <Compile Include="Entities\User\LoginData.cs" />
     <Compile Include="Enums\ApplicationStatus.cs" />
     <Compile Include="Enums\UserRole.cs" />
-    <Compile Include="Interfaces\IJobApplicationRepository.cs" />
-    <Compile Include="Interfaces\IJobApplicationService.cs" />
-    <Compile Include="Interfaces\IJobPostRepository.cs" />
-    <Compile Include="Interfaces\IJobPostService.cs" />
-    <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

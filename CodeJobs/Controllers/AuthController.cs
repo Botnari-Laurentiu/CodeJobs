@@ -4,13 +4,14 @@ using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;  // pentru FormsAuthentication
-using CodeJobs.DataAccess;
+using CodeJobs.DataAccess.Data;
 using CodeJobs.Domain.Entities.User;
 using CodeJobs.Domain.Enums;
 using CodeJobs.Models;
 
 namespace CodeJobs.Controllers
 {
+    [AllowAnonymous]
     public class AuthController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;

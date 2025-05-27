@@ -60,7 +60,13 @@
     <Compile Include="Core\Services\JobApplicationService.cs" />
     <Compile Include="Core\Services\JobPostingService.cs" />
     <Compile Include="Core\Services\UserService.cs" />
+    <Compile Include="Interfaces\IJobApplicationRepository.cs" />
+    <Compile Include="Interfaces\IJobApplicationService.cs" />
+    <Compile Include="Interfaces\IJobPostRepository.cs" />
+    <Compile Include="Interfaces\IJobPostService.cs" />
+    <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\JobPostRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CodeJobs.DataAccess\CodeJobs.DataAccess.csproj">

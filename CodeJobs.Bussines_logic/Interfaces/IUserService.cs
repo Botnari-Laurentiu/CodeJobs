@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using CodeJobs.Domain.Entities.User;
 
-namespace CodeJobs.Domain.Interfaces
+namespace CodeJobs.Business_Logic.Interfaces
 {
     public interface IUserService
     {

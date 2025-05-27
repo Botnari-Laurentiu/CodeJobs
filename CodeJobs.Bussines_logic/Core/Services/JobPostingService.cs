@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using CodeJobs.Business_Logic.Interfaces;
 using CodeJobs.Domain.Entities;
-using CodeJobs.Domain.Interfaces;
+using CodeJobs.Business_Logic.Repositories; 
 
 namespace CodeJobs.Business_Logic.Core.Services
 {
@@ -9,9 +10,9 @@ namespace CodeJobs.Business_Logic.Core.Services
     {
         private readonly IJobPostRepository _jobPostRepository;
 
-        public JobPostingService(IJobPostRepository jobPostRepository)
+        public JobPostingService()
         {
-            _jobPostRepository = jobPostRepository;
+            _jobPostRepository = new JobPostRepository(); 
         }
 
         public async Task<JobPost> CreateJobPost(JobPost jobPost)

@@ -1,19 +1,20 @@
-﻿using CodeJobs.Business_Logic.Core.Services;
-using CodeJobs.Domain.Entities;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Web.Mvc;
+using CodeJobs.Domain.Entities;
+using CodeJobs.Business_Logic.Interfaces;
+using CodeJobs.Business_Logic.Core.Services;
 
 namespace CodeJobs.Controllers
 {
     public class EmployerController : Controller
     {
-        private readonly JobPostingService _jobPostingService;
+        private readonly IJobPostService _jobPostingService;
 
-        public EmployerController()
+        public EmployerController(IJobPostService jobPostingService)
         {
-            var repository = new JobPostRepository();
-            _jobPostingService = new JobPostingService(repository);
+            _jobPostingService = jobPostingService;
         }
+
 
         // GET: /Employer/JobsList
         public async Task<ActionResult> JobsList()

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CodeJobs.Domain.Entities;
 
-namespace CodeJobs.Domain.Interfaces
+namespace CodeJobs.Business_Logic.Interfaces
 {
     public interface IJobApplicationService
     {

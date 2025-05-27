@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using CodeJobs.Domain.Interfaces;
+using CodeJobs.Business_Logic.Interfaces;
 using CodeJobs.Filters;
 using CodeJobs.Models;
 
