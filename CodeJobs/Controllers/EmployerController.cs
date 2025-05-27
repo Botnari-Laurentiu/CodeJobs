@@ -1,8 +1,9 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Mvc;
 using CodeJobs.Domain.Entities;
-using CodeJobs.Business_Logic.Interfaces;
 using CodeJobs.Business_Logic.Core.Services;
+using CodeJobs.Business_Logic.Interfaces;
+using CodeJobs.Business_Logic.Repositories; 
 
 namespace CodeJobs.Controllers
 {
@@ -10,11 +11,11 @@ namespace CodeJobs.Controllers
     {
         private readonly IJobPostService _jobPostingService;
 
-        public EmployerController(IJobPostService jobPostingService)
+        public EmployerController()
         {
-            _jobPostingService = jobPostingService;
+            var repository = new JobPostRepository();
+            _jobPostingService = new JobPostingService(repository);
         }
-
 
         // GET: /Employer/JobsList
         public async Task<ActionResult> JobsList()
