@@ -199,7 +199,6 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\EmployerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Filters\AdminModAttribute.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Content Include="Scripts\bootstrap.bundle.js" />

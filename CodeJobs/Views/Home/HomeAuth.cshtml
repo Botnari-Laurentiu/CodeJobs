@@ -1,0 +1,60 @@
+﻿@model IEnumerable<CodeJobs.Domain.Entities.JobPost>
+@{
+    ViewBag.Title = "Home Auth";
+    Layout = "~/Views/Shared/_LayoutAuth.cshtml";
+}
+
+<!-- HERO SECTION -->
+<section>
+    <div class="container-fluid bg-primary p-5 text-center text-white">
+        <h1>Find Your IT Job or Recruit Top Talent!</h1>
+        <p>Connecting IT professionals with top employers. Discover opportunities or hire skilled developers today.</p>
+        <a href="#" class="btn btn-outline-light me-2">Find Jobs</a>
+        <a href="@Url.Action("JobAdd", "Employer")" class="btn btn-outline-light">Post a Job</a>
+    </div>
+
+    <!-- SEARCH BAR -->
+    <form class="d-flex justify-content-center container my-4" role="search" action="#">
+        <label class="visually-hidden" for="searchInput">Search</label>
+        <input id="searchInput"
+               class="form-control rounded-pill me-2 shadow-sm"
+               type="search"
+               placeholder="Search jobs..."
+               aria-label="Search"
+               style="max-width: 1200px;" />
+        <button class="btn btn-primary rounded-pill px-4" type="submit" style="box-shadow: 0 4px 8px rgba(0,0,0,0.15); transition: background-color 0.3s;">
+            Search
+        </button>
+    </form>
+
+    <!-- JOB LISTINGS -->
+    <div class="container">
+        <h2 class="mb-4">Current Vacancies</h2>
+        <div class="row" id="jobs-container">
+            @if (Model != null && Model.Any())
+            {
+                foreach (var jobPost in Model)
+                {
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow">
+                            <div class="card-body">
+                                <h5 class="card-title">@jobPost.Title</h5>
+                                <h6 class="card-subtitle text-muted mb-2">@jobPost.CompanyName</h6>
+                                <p class="card-text">
+                                    @jobPost.Description
+                                </p>
+                                <a class="btn btn-primary btn-sm" href="@Url.Action("JobDetails", "Employer", new { id = jobPost.Id })">More</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-12">
+                    <p>No job posts available.</p>
+                </div>
+            }
+        </div>
+    </div>
+</section>

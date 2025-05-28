@@ -1,37 +1,61 @@
+@model CodeJobs.Domain.Entities.JobPost
+
 @{
     ViewBag.Title = "Job Details";
     Layout = "~/Views/Shared/_LayoutAuth.cshtml";
 }
 
-<div class="container mt-5">
-    <h2 id="jobTitle">Job Title</h2>
-    <h5 id="companyName" class="text-muted">Company</h5>
-    <p id="jobDescription">Job description will appear here.</p>
-    <p><strong>Location:</strong> <span id="location"></span></p>
-    <p><strong>Type:</strong> <span id="jobType"></span></p>
-    <p><strong>Salary:</strong> <span id="salary"></span></p>
-    <p><strong>Contact Email:</strong> <span id="contactEmail"></span></p>
-    <a href="jobslist.html" class="btn btn-secondary mt-3">Back to Jobs List</a>
-</div>
+<section>
+    <div class="container mt-5 p-5 w-75 bg-light rounded shadow">
+        <header class="mb-4">
+            <h1 class="display-5 fw-bold">@Model.Title</h1>
+            <p class="text-muted fst-italic">
+                @Model.Location &mdash; @Model.EmploymentType &mdash; @Model.ExperienceLevel
+            </p>
+            <p class="text-muted">
+                <strong>Posted:</strong> @Model.PostedDate.ToString("dd MMM yyyy")
+            </p>
+        </header>
 
-// Exemplu de joburi hardcodate
-    const jobs = {
-      1: {
-        title: "Frontend Developer",
-        company: "Google",
-        description: "Build awesome user interfaces...",
-        location: "Remote",
-        type: "Full-time",
-        salary: "1200-1500 USD/month",
-        contactEmail: "hr@google.com"
-      },
-      2: {
-        title: "Backend Developer",
-        company: "Microsoft",
-        description: "Develop backend services...",
-        location: "Hybrid",
-        type: "Internship",
-        salary: "800-1000 USD/month",
-        contactEmail: "jobs@microsoft.com"
-      }
-    };
+        <div class="mb-4">
+            <h4 class="mb-3">Job Description</h4>
+            <p class="fs-5">@Model.Description</p>
+        </div>
+
+        <div class="mb-4">
+            <h4 class="mb-3">Required Skills</h4>
+            <ul class="list-group list-group-flush fs-6">
+                @foreach (var skill in Model.RequiredSkills.Split(','))
+                {
+                    <li class="list-group-item">@skill.Trim()</li>
+                }
+            </ul>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <h5>Company Name</h5>
+                <p>@Model.CompanyName</p>
+            </div>
+            <div class="col-md-6">
+                <h5>Salary Range</h5>
+                <p>@(string.IsNullOrWhiteSpace(Model.SalaryRange) ? "Not specified" : Model.SalaryRange)</p>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <h5>Contact Email</h5>
+                <p><a href="mailto:@Model.ContactEmail">@Model.ContactEmail</a></p>
+            </div>
+            <div class="col-md-6">
+                <h5>Employer</h5>
+                <p>@(Model.Employer != null ? Model.Employer.FullName : "N/A")</p>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-end mt-5">
+            <a href="#" class="btn btn-primary">Apply Now</a>
+        </div>
+    </div>
+</section>

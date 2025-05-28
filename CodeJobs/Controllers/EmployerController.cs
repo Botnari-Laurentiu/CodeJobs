@@ -17,7 +17,7 @@ namespace CodeJobs.Controllers
             _jobPostingService = new JobPostingService(repository);
         }
 
-        // GET: /Employer/JobsList
+        // POST <--JobList-->
         public async Task<ActionResult> JobsList()
         {
             var jobs = await _jobPostingService.GetAllJobPosts();
@@ -44,7 +44,7 @@ namespace CodeJobs.Controllers
             return View("~/Views/Jobs/JobAdd.cshtml", model);
         }
 
-        // GET: /Employer/JobDetails/{id}
+        // POST <--JobDetails-->
         public async Task<ActionResult> JobDetails(int? id)
         {
             if (id == null)
