@@ -32,4 +32,9 @@ public class JobPostingService : IJobPostService
     {
         return await _jobPostRepository.GetJobPostById(jobId);
     }
+    public async Task<List<JobPost>> GetJobPostsByUserId(string userId)
+    {
+        return await _jobPostRepository.GetJobPostsByUserId(userId);
+    }
 }
+

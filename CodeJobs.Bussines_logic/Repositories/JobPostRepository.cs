@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using CodeJobs.Business_Logic.Interfaces;
 using CodeJobs.DataAccess.Data;
 using CodeJobs.Domain.Entities;
+using System.Linq;
+
 
 namespace CodeJobs.Business_Logic.Repositories
 {
@@ -32,5 +34,15 @@ namespace CodeJobs.Business_Logic.Repositories
         {
             return await _context.JobPosts.FindAsync(jobId);
         }
+        public async Task<List<JobPost>> GetJobPostsByUserId(string userId)
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                return await context.JobPosts
+                    .Where(j => j.UserId == userId)
+                    .ToListAsync();
+            }
+        }
+
     }
 }

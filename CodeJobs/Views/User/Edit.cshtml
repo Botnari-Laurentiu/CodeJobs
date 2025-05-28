@@ -1,0 +1,25 @@
+﻿@model CodeJobs.Models.UserViewModel
+@{
+    ViewBag.Title = "Edit Profile";
+}
+
+<h2>Edit Profile</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.FullName)
+        @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.FullName)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email)
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @readonly = "readonly" }) <!-- email readonly -->
+    </div>
+
+    <button type="submit" class="btn btn-success">Save</button>
+    <a href="@Url.Action("MyProfile", "User")" class="btn btn-secondary">Cancel</a>
+}

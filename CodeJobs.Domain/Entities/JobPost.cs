@@ -38,8 +38,8 @@ namespace CodeJobs.Domain.Entities
 
         public DateTime PostedDate { get; set; }
 
-        public string EmployerId { get; set; }
-        public virtual ApplicationUser Employer { get; set; }
+        public string UserId { get; set; }
+        public virtual ApplicationUser User { get; set; }
 
         public JobPost()
         {

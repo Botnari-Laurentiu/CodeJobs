@@ -197,9 +197,9 @@
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\EmployerController.cs" />
+    <Compile Include="Controllers\JobsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\JobController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\AdminModAttribute.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -283,8 +283,9 @@
     <Content Include="Views\Jobs\UserAdd.cshtml" />
     <Content Include="Views\Jobs\JobsList.cshtml" />
     <Content Include="Views\Jobs\JobDetails.cshtml" />
-    <Content Include="Views\Jobs\MyProfile.cshtml" />
+    <Content Include="Views\User\MyProfile.cshtml" />
     <Content Include="Views\Admin\ManageUsers.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

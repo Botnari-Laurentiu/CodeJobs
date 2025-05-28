@@ -5,10 +5,10 @@
 }
 
 <section>
-    <form class="container d-flex my-4 justify-content-center" role="search" action="#">
+    <form class="d-flex justify-content-center container my-4" role="search" action="#">
         <label class="visually-hidden" for="searchInput">Search</label>
         <input id="searchInput"
-               class="form-control me-2 rounded-pill shadow-sm"
+               class="form-control rounded-pill me-2 shadow-sm"
                type="search"
                placeholder="Search jobs..."
                aria-label="Search"
@@ -23,9 +23,9 @@
         <img src="~/Content/Images/CodeJobs.png" class="img-fluid img-home" alt="Job illustration" />
     </div>
 
-    <div class="container text-center text-dark" style="padding: 50px;">
+    <div class="text-dark container text-center" style="padding: 50px;">
         <h1>Welcome to CodeJobs!</h1>
         <p>Create an account or sign in to see your personalized job recommendations.</p>
-        <button class="btn btn-primary">Get Started</button>
+        <button class="btn btn-primary" onclick="location.href='@Url.Action("Register", "Auth")'">Get Started</button>
     </div>
 </section>

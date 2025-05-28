@@ -9,5 +9,7 @@ namespace CodeJobs.Business_Logic.Interfaces
         Task<JobPost> CreateJobPost(JobPost jobPost);
         Task<List<JobPost>> GetAllJobPosts();
         Task<JobPost> GetJobPostById(int jobId);
+        Task<List<JobPost>> GetJobPostsByUserId(string userId);
+
     }
 }

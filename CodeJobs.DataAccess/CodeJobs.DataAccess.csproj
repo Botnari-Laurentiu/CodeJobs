@@ -66,6 +66,14 @@
     <Compile Include="Migrations\202505241623475_AddExtraFieldsToJobPost.Designer.cs">
       <DependentUpon>202505241623475_AddExtraFieldsToJobPost.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202505281343461_UpdateJobPost_UserRelation.cs" />
+    <Compile Include="Migrations\202505281343461_UpdateJobPost_UserRelation.Designer.cs">
+      <DependentUpon>202505281343461_UpdateJobPost_UserRelation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202505281812220_AddUserExtendedFields.cs" />
+    <Compile Include="Migrations\202505281812220_AddUserExtendedFields.Designer.cs">
+      <DependentUpon>202505281812220_AddUserExtendedFields.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -85,6 +93,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202505241623475_AddExtraFieldsToJobPost.resx">
       <DependentUpon>202505241623475_AddExtraFieldsToJobPost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202505281343461_UpdateJobPost_UserRelation.resx">
+      <DependentUpon>202505281343461_UpdateJobPost_UserRelation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202505281812220_AddUserExtendedFields.resx">
+      <DependentUpon>202505281812220_AddUserExtendedFields.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

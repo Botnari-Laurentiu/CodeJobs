@@ -1,50 +1,51 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Mvc;
 using CodeJobs.Domain.Entities;
-using CodeJobs.Business_Logic.Core.Services;
 using CodeJobs.Business_Logic.Interfaces;
-using CodeJobs.Business_Logic.Repositories; 
+using CodeJobs.Business_Logic.Repositories;
+using Microsoft.AspNet.Identity;
 
 namespace CodeJobs.Controllers
 {
-    public class EmployerController : Controller
+    public class JobsController : Controller
     {
         private readonly IJobPostService _jobPostingService;
 
-        public EmployerController()
+        public JobsController()
         {
             var repository = new JobPostRepository();
             _jobPostingService = new JobPostingService(repository);
         }
 
-        // GET: /Employer/JobsList
+        // GET: /Jobs/JobsList
         public async Task<ActionResult> JobsList()
         {
             var jobs = await _jobPostingService.GetAllJobPosts();
-            return View("~/Views/Jobs/JobsList.cshtml", jobs);
+            return View(jobs);
         }
 
-        // GET: /Employer/JobAdd
+        // GET: /Jobs/JobAdd
         public ActionResult JobAdd()
         {
-            return View("~/Views/Jobs/JobAdd.cshtml");
+            return View();
         }
 
-        // POST: /Employer/JobAdd
+        // POST: /Jobs/JobAdd
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> JobAdd(JobPost model)
         {
             if (ModelState.IsValid)
             {
+                model.UserId = User.Identity.GetUserId();
                 await _jobPostingService.CreateJobPost(model);
                 return RedirectToAction("JobsList");
             }
 
-            return View("~/Views/Jobs/JobAdd.cshtml", model);
+            return View(model);
         }
 
-        // GET: /Employer/JobDetails/{id}
+        // GET: /Jobs/JobDetails/{id}
         public async Task<ActionResult> JobDetails(int? id)
         {
             if (id == null)
@@ -55,13 +56,7 @@ namespace CodeJobs.Controllers
             if (job == null)
                 return HttpNotFound();
 
-            return View("~/Views/Jobs/JobDetails.cshtml", job);
-        }
-
-        // GET: /Employer/MyProfile
-        public ActionResult MyProfile()
-        {
-            return View("~/Views/Jobs/MyProfile.cshtml");
+            return View(job);
         }
     }
 }
