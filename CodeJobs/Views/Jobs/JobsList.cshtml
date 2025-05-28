@@ -1,3 +1,6 @@
+@model List<CodeJobs.Domain.Entities.JobPost>
+
+
 @{
     ViewBag.Title = "Jobs List";
     Layout = "~/Views/Shared/_LayoutAuth.cshtml";
@@ -6,20 +9,23 @@
 <div class="container mt-5">
     <h2 class="mb-4">Available Jobs</h2>
 
-    <template id="job-template">
-        <div class="col-md-4 mb-4">
-            <div class="card shadow h-100">
-                <div class="card-body">
-                    <h5 class="card-title">[TITLE]</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">[COMPANY]</h6>
-                    <p class="card-text">
-                        <strong>Location:</strong> [LOCATION] <br>
-                        <strong>Type:</strong> [TYPE]
-                    </p>
-                    <a href="#" class="btn btn-primary btn-sm">More</a>
+    <div class="row">
+        @foreach (var job in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card shadow h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">@job.Title</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">@job.CompanyName</h6>
+                        <p class="card-text">
+                            <strong>Location:</strong> @job.Location <br />
+                            <strong>Type:</strong> @job.EmploymentType
+                        </p>
+                        <a href="@Url.Action("JobDetails", "Jobs", new { id = job.Id })" class="btn btn-primary btn-sm">More</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </template>
+        }
+    </div>
 
 </div>
