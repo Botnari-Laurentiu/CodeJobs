@@ -15,7 +15,7 @@
         <p><strong>Phone:</strong> @Model.PhoneNumber</p>
         <p><strong>Bio:</strong> @Model.Bio</p>
 
-        <hr />
+            <hr />
 
         <h4 class="text-primary">Professional info</h4>
         <p><strong>Position:</strong> @Model.JobTitle</p>
@@ -23,10 +23,10 @@
         <p><strong>Years of Experience:</strong> @Model.ExperienceYears</p>
         <p><strong>Employment Type:</strong> @Model.EmploymentType</p>
         <p><strong>Preferred Work Location:</strong> @Model.PreferredLocation</p>
-        <p><strong>LinkedIn:</strong> @Model.LinkedInProfile</p>
-
-        <div class="d-flex justify-content-end mt-4">
-            <a href="@Url.Action("Edit", "User", new { id = Model.Id })" class="btn btn-outline-primary">Edit Profile</a>
-        </div>
+        <p>
+            <strong>LinkedIn: </strong>@Model.PreferredLocation</p>
+            <div class="d-flex justify-content-end mt-4">
+                <a href="/Employee/Edit/@Model.Id" class="btn btn-outline-primary">Edit Profile</a>
+            </div>
     </div>
 </div>

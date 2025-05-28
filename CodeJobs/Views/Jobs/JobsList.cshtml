@@ -1,5 +1,4 @@
-﻿@model List<CodeJobs.Domain.Entities.JobPost>
-
+@model IEnumerable<CodeJobs.Domain.Entities.JobPost>
 
 @{
     ViewBag.Title = "Jobs List";
@@ -8,24 +7,31 @@
 
 <div class="container mt-5">
     <h2 class="mb-4">Available Jobs</h2>
-
-    <div class="row">
-        @foreach (var job in Model)
+    <div class="row" id="jobs-container">
+        @if (Model != null && Model.Any())
         {
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 shadow">
-                    <div class="card-body">
-                        <h5 class="card-title">@job.Title</h5>
-                        <h6 class="card-subtitle text-muted mb-2">@job.CompanyName</h6>
-                        <p class="card-text">
-                            <strong>Location:</strong> @job.Location <br />
-                            <strong>Type:</strong> @job.EmploymentType
-                        </p>
-                        <a href="@Url.Action("JobDetails", "Jobs", new { id = job.Id })" class="btn btn-primary btn-sm">More</a>
+            foreach (var jobPost in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow">
+                        <div class="card-body">
+                            <h5 class="card-title">@jobPost.Title</h5>
+                            <h6 class="card-subtitle text-muted mb-2">@jobPost.CompanyName</h6>
+                            <p class="card-text">
+                                <strong>Location:</strong> @jobPost.Location <br />
+                                <strong>Type:</strong> @jobPost.EmploymentType
+                            </p>
+                            <a href="@Url.Action("JobDetails", "Jobs", new { id = jobPost.Id })" class="btn btn-primary btn-sm">More</a>
+                        </div>
                     </div>
                 </div>
+            }
+        }
+        else
+        {
+            <div class="col-12">
+                <p>No job posts available.</p>
             </div>
         }
     </div>
-
 </div>
