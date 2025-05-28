@@ -43,7 +43,7 @@
                                 <p class="card-text">
                                     @jobPost.Description
                                 </p>
-                                <a class="btn btn-primary btn-sm" href="#">Apply Now</a>
+                                <a class="btn btn-primary btn-sm" href="@Url.Action("JobDetails", "Employer", new { id = jobPost.Id })">More</a>
                             </div>
                         </div>
                     </div>
