@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
-using CodeJobs.Models; // UserViewModel
-using CodeJobs.DataAccess.Data; // ApplicationDbContext
+using CodeJobs.Models; 
+using CodeJobs.DataAccess.Data;
 using System.Data.Entity;
 
 namespace CodeJobs.Controllers
@@ -44,6 +44,65 @@ namespace CodeJobs.Controllers
             return View(model);
         }
 
+        // GET: /User/UserAdd
+        public async Task<ActionResult> UserAdd()
+        {
+            var userId = User.Identity.GetUserId();
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == userId);
+
+            if (user == null)
+                return HttpNotFound();
+
+            var model = new UserViewModel
+            {
+                Id = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
+                PhoneNumber = user.PhoneNumber,
+                Bio = user.Bio,
+                JobTitle = user.JobTitle,
+                Skills = user.Skills,
+                ExperienceYears = user.ExperienceYears,
+                EmploymentType = user.EmploymentType,
+                PreferredLocation = user.PreferredLocation,
+                LinkedInProfile = user.LinkedInProfile
+            };
+
+            return View(model);
+        }
+
+        // POST: /User/UserAdd
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> UserAdd(UserViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var userId = User.Identity.GetUserId();
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == userId);
+
+            if (user == null)
+                return HttpNotFound();
+
+            user.FirstName = model.FirstName;
+            user.LastName = model.LastName;
+            user.Email = model.Email;
+            user.PhoneNumber = model.PhoneNumber;
+            user.Bio = model.Bio;
+            user.JobTitle = model.JobTitle;
+            user.Skills = model.Skills;
+            user.ExperienceYears = model.ExperienceYears;
+            user.EmploymentType = model.EmploymentType;
+            user.PreferredLocation = model.PreferredLocation;
+            user.LinkedInProfile = model.LinkedInProfile;
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("MyProfile");
+        }
+
         // GET: /User/Edit
         public async Task<ActionResult> Edit()
         {
@@ -56,9 +115,17 @@ namespace CodeJobs.Controllers
             var model = new UserViewModel
             {
                 Id = user.Id,
-                FullName = user.FullName,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
                 Email = user.Email,
-                Role = user.Role.ToString()
+                PhoneNumber = user.PhoneNumber,
+                Bio = user.Bio,
+                JobTitle = user.JobTitle,
+                Skills = user.Skills,
+                ExperienceYears = user.ExperienceYears,
+                EmploymentType = user.EmploymentType,
+                PreferredLocation = user.PreferredLocation,
+                LinkedInProfile = user.LinkedInProfile
             };
 
             return View(model);
@@ -77,11 +144,42 @@ namespace CodeJobs.Controllers
             if (user == null)
                 return HttpNotFound();
 
-            user.FullName = model.FullName;
+            user.FirstName = model.FirstName;
+            user.LastName = model.LastName;
+            user.PhoneNumber = model.PhoneNumber;
+            user.Bio = model.Bio;
+            user.JobTitle = model.JobTitle;
+            user.Skills = model.Skills;
+            user.ExperienceYears = model.ExperienceYears;
+            user.EmploymentType = model.EmploymentType;
+            user.PreferredLocation = model.PreferredLocation;
+            user.LinkedInProfile = model.LinkedInProfile;
 
             await _context.SaveChangesAsync();
 
             return RedirectToAction("MyProfile");
+        }
+
+        // Check if the user profile is complete
+        public async Task<ActionResult> FindJobRedirect()
+        {
+            var userId = User.Identity.GetUserId();
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == userId);
+
+            // Profile validation logic
+            bool isProfileComplete = !string.IsNullOrWhiteSpace(user?.FirstName)
+                                     && !string.IsNullOrWhiteSpace(user.LastName)
+                                     && !string.IsNullOrWhiteSpace(user.Email)
+                                     && !string.IsNullOrWhiteSpace(user.PhoneNumber);
+
+            if (!isProfileComplete)
+            {
+                // Profile completion
+                return RedirectToAction("UserAdd", "User");
+            }
+
+            // JobList
+            return RedirectToAction("JobsList", "Jobs");
         }
 
         protected override void Dispose(bool disposing)

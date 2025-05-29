@@ -1,79 +1,66 @@
+@model CodeJobs.Models.UserViewModel
+
 @{
     ViewBag.Title = "User Add";
     Layout = "~/Views/Shared/_LayoutAuth.cshtml";
 }
 
 <div class="container-fluid">
-    <form class="border p-4 rounded shadow w-50 mx-auto bg-white mb-5 mt-5">
+    @using (Html.BeginForm("UserAdd", "Jobs", FormMethod.Post, new { @class = "border p-4 rounded shadow w-50 mx-auto bg-white mb-5 mt-5" }))
+    {
+        @Html.AntiForgeryToken()
         <div class="row">
             <h2>Personal info</h2>
             <div class="col-6">
-                <label for="employeeFirstName" class="form-label">First name</label>
-                <input type="text" class="form-control" id="employeeFirstName">
+                @Html.LabelFor(m => m.FirstName, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
             </div>
-
             <div class="col-6 mb-3">
-                <label for="employeeLastName" class="form-label">Last name</label>
-                <input type="text" class="form-control" id="employeeLastName">
+                @Html.LabelFor(m => m.LastName, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
             </div>
-
             <div class="col-6">
-                <label for="employeeEmail" class="form-label">Email</label>
-                <input type="text" class="form-control" id="employeeEmail">
+                @Html.LabelFor(m => m.Email, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
             </div>
             <div class="col-6 mb-3">
-                <label for="employeePhone" class="form-label">Phone</label>
-                <input type="text" class="form-control" id="employeePhone">
+                @Html.LabelFor(m => m.PhoneNumber, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
             </div>
             <div class="col mb-4">
-                <label for="employeeLocation" class="form-label">Bio</label>
-                <textarea asp-for="Bio" class="form-control" rows="3"></textarea>
+                @Html.LabelFor(m => m.Bio, new { @class = "form-label" })
+                @Html.TextAreaFor(m => m.Bio, new { @class = "form-control", rows = 3 })
             </div>
-
             <h2>Professional info</h2>
             <div class="col-6 mb-3">
-                <label asp-for="JobTitle" class="form-label">Position</label>
-                <input asp-for="JobTitle" class="form-control" />
+                @Html.LabelFor(m => m.JobTitle, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.JobTitle, new { @class = "form-control" })
             </div>
-
             <div class="col-6 mb-3">
-                <label asp-for="Skills" class="form-label">Skills</label>
-                <input asp-for="Skills" class="form-control" placeholder="e.g., C#, ASP.NET, SQL" />
+                @Html.LabelFor(m => m.Skills, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.Skills, new { @class = "form-control", placeholder = "e.g., C#, ASP.NET, SQL" })
             </div>
-
             <div class="row mb-3">
                 <div class="col-md-6">
-                    <label asp-for="ExperienceYears" class="form-label">Years of Experience</label>
-                    <input asp-for="ExperienceYears" class="form-control" type="number" min="0" />
+                    @Html.LabelFor(m => m.ExperienceYears, new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.ExperienceYears, new { @class = "form-control", type = "number", min = "0" })
                 </div>
                 <div class="col-md-6">
-                    <label asp-for="EmploymentType" class="form-label">Employment Type</label>
-                    <select asp-for="EmploymentType" class="form-select">
-                        <option>Full-time</option>
-                        <option>Part-time</option>
-                        <option>Internship</option>
-                    </select>
+                    @Html.LabelFor(m => m.EmploymentType, new { @class = "form-label" })
+                    @Html.DropDownListFor(m => m.EmploymentType, new SelectList(new[] { "Full-time", "Part-time", "Internship" }), "Select type", new { @class = "form-select" })
                 </div>
             </div>
-
             <div class="mb-3">
-                <label asp-for="PreferredLocation" class="form-label">Preferred Work Location</label>
-                <select class="form-select" aria-label="Default select example">
-                    <option selected>In office</option>
-                    <option value="1">Remote</option>
-                    <option value="2">Hybrid</option>
-                </select>
+                @Html.LabelFor(m => m.PreferredLocation, new { @class = "form-label" })
+                @Html.DropDownListFor(m => m.PreferredLocation, new SelectList(new[] { "In office", "Remote", "Hybrid" }), "Select location", new { @class = "form-select" })
             </div>
-
             <div class="mb-3">
-                <label asp-for="LinkedInUrl" class="form-label">LinkedIn Profile (optional)</label>
-                <input asp-for="LinkedInUrl" class="form-control" />
+                @Html.LabelFor(m => m.LinkedInProfile, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.LinkedInProfile, new { @class = "form-control" })
             </div>
-
             <div class="d-flex justify-content-end">
                 <button type="submit" class="btn btn-primary">Save Profile</button>
             </div>
-
         </div>
-    </form>
+    }
 </div>

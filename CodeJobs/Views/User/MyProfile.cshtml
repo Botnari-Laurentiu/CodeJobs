@@ -2,31 +2,58 @@
 
 @{
     ViewBag.Title = "My Profile";
-    Layout = "~/Views/Shared/_SimpleLayout.cshtml";
+    Layout = "~/Views/Shared/_LayoutAuth.cshtml";
 }
 
-<div class="w-75 container mt-3 p-4">
-    <h2>My Profile</h2>
-    <div class="bg-light container mb-5 rounded p-4 shadow">
-        <h4 class="text-primary">Personal info</h4>
-        <p><strong>First name:</strong> @Model.FirstName</p>
-        <p><strong>Last name:</strong> @Model.LastName</p>
-        <p><strong>Email:</strong> @Model.Email</p>
-        <p><strong>Phone:</strong> @Model.PhoneNumber</p>
-        <p><strong>Bio:</strong> @Model.Bio</p>
-
-            <hr />
-
-        <h4 class="text-primary">Professional info</h4>
-        <p><strong>Position:</strong> @Model.JobTitle</p>
-        <p><strong>Skills:</strong> @Model.Skills</p>
-        <p><strong>Years of Experience:</strong> @Model.ExperienceYears</p>
-        <p><strong>Employment Type:</strong> @Model.EmploymentType</p>
-        <p><strong>Preferred Work Location:</strong> @Model.PreferredLocation</p>
-        <p>
-            <strong>LinkedIn: </strong>@Model.PreferredLocation</p>
-            <div class="d-flex justify-content-end mt-4">
-                <a href="/Employee/Edit/@Model.Id" class="btn btn-outline-primary">Edit Profile</a>
+<section>
+    <div class="container mt-4 p-4 w-75">
+        <h2 class="display-5 fw-bold mb-4">My Profile</h2>
+        <div class="mb-5 p-4 bg-light rounded shadow-sm">
+            <h4 class="text-primary fw-bold mb-3">Personal Info</h4>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <p><strong>First Name:</strong> @Model.FirstName</p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Last Name:</strong> @Model.LastName</p>
+                </div>
             </div>
+            <p><strong>Email:</strong> <a href="mailto:@Model.Email">@Model.Email</a></p>
+            <p><strong>Phone:</strong> @Model.PhoneNumber</p>
+            <p><strong>Bio:</strong> @Model.Bio</p>
+            <hr />
+            <h4 class="text-primary fw-bold mb-3">Professional Info</h4>
+            <div class="row mb-2">
+                <div class="col-md-6">
+                    <p><strong>Position:</strong> @Model.JobTitle</p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Employment Type:</strong> @Model.EmploymentType</p>
+                </div>
+            </div>
+            <p><strong>Skills:</strong> @Model.Skills</p>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <p><strong>Years of Experience:</strong> @Model.ExperienceYears</p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Preferred Work Location:</strong> @Model.PreferredLocation</p>
+                </div>
+            </div>
+            <p>
+                <strong>LinkedIn:</strong>
+                @if (!string.IsNullOrWhiteSpace(Model.LinkedInProfile))
+                {
+                    <a href="@Model.LinkedInProfile" target="_blank">@Model.LinkedInProfile</a>
+                }
+                else
+                {
+                    <span class="text-muted">Not provided</span>
+                }
+            </p>
+            <div class="d-flex justify-content-end mt-4">
+                <a href="@Url.Action("Edit", "User")" class="btn btn-outline-primary">Edit Profile</a>
+            </div>
+        </div>
     </div>
-</div>
+</section>
