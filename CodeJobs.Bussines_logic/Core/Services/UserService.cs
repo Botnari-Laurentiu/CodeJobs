@@ -11,11 +11,13 @@ namespace CodeJobs.Business_Logic.Core.Services
 {
     public class UserService : IUserService
     {
+        private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
 
         public UserService(ApplicationDbContext context)
         {
-            var userStore = new UserStore<ApplicationUser>(context);
+            _context = context;
+            var userStore = new UserStore<ApplicationUser>(_context);
             _userManager = new UserManager<ApplicationUser>(userStore);
         }
 
@@ -27,7 +29,7 @@ namespace CodeJobs.Business_Logic.Core.Services
             return null;
         }
 
-        public async Task<ApplicationUser> RegisterUser(ApplicationUser user)
+        public Task<ApplicationUser> RegisterUser(ApplicationUser user)
         {
             throw new System.NotImplementedException("Use RegisterUser(ApplicationUser user, string password)");
         }
@@ -46,6 +48,17 @@ namespace CodeJobs.Business_Logic.Core.Services
         public async Task<List<ApplicationUser>> GetAllUsers()
         {
             return await _userManager.Users.ToListAsync();
+        }
+
+        public async Task<bool> UpdateUser(ApplicationUser user)
+        {
+            var result = await _userManager.UpdateAsync(user);
+            return result.Succeeded;
+        }
+
+        public async Task SaveChangesAsync()
+        {
+            await _context.SaveChangesAsync();
         }
     }
 }

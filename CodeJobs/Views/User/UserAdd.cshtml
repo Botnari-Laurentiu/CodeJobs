@@ -6,7 +6,7 @@
 }
 
 <div class="container-fluid">
-    @using (Html.BeginForm("UserAdd", "Jobs", FormMethod.Post, new { @class = "border p-4 rounded shadow w-50 mx-auto bg-white mb-5 mt-5" }))
+    @using (Html.BeginForm("UserAdd", "User", FormMethod.Post, new { @class = "border p-4 rounded shadow w-50 mx-auto bg-white mb-5 mt-5" }))
     {
         @Html.AntiForgeryToken()
         <div class="row">

@@ -6,38 +6,38 @@
 }
 
 <section>
-    <div class="container mt-4 p-4 w-75">
+    <div class="w-75 container mt-4 p-4">
         <h2 class="display-5 fw-bold mb-4">My Profile</h2>
-        <div class="mb-5 p-4 bg-light rounded shadow-sm">
+        <div class="bg-light mb-5 rounded p-4 shadow-sm">
             <h4 class="text-primary fw-bold mb-3">Personal Info</h4>
             <div class="row mb-3">
                 <div class="col-md-6">
-                    <p><strong>First Name:</strong> @Model.FirstName</p>
+                    <p><strong>First Name:</strong> @(string.IsNullOrWhiteSpace(Model.FirstName) ? "Not provided" : Model.FirstName)</p>
                 </div>
                 <div class="col-md-6">
-                    <p><strong>Last Name:</strong> @Model.LastName</p>
+                    <p><strong>Last Name:</strong> @(string.IsNullOrWhiteSpace(Model.LastName) ? "Not provided" : Model.LastName)</p>
                 </div>
             </div>
-            <p><strong>Email:</strong> <a href="mailto:@Model.Email">@Model.Email</a></p>
-            <p><strong>Phone:</strong> @Model.PhoneNumber</p>
-            <p><strong>Bio:</strong> @Model.Bio</p>
+            <p><strong>Email:</strong> @(string.IsNullOrWhiteSpace(Model.Email) ? "Not provided" : $"<a href=\"mailto:{Model.Email}\">{Model.Email}</a>")</p>
+            <p>Phone Number: @(string.IsNullOrEmpty(Model.PhoneNumber) ? "No phone number provided" : Model.PhoneNumber)</p>
+            <p><strong>Bio:</strong> @(string.IsNullOrWhiteSpace(Model.Bio) ? "Not provided" : Model.Bio)</p>
             <hr />
             <h4 class="text-primary fw-bold mb-3">Professional Info</h4>
             <div class="row mb-2">
                 <div class="col-md-6">
-                    <p><strong>Position:</strong> @Model.JobTitle</p>
+                    <p><strong>Position:</strong> @(string.IsNullOrWhiteSpace(Model.JobTitle) ? "Not provided" : Model.JobTitle)</p>
                 </div>
                 <div class="col-md-6">
-                    <p><strong>Employment Type:</strong> @Model.EmploymentType</p>
+                    <p><strong>Employment Type:</strong> @(string.IsNullOrWhiteSpace(Model.EmploymentType) ? "Not provided" : Model.EmploymentType)</p>
                 </div>
             </div>
-            <p><strong>Skills:</strong> @Model.Skills</p>
+            <p><strong>Skills:</strong> @(string.IsNullOrWhiteSpace(Model.Skills) ? "Not provided" : Model.Skills)</p>
             <div class="row mb-3">
                 <div class="col-md-6">
-                    <p><strong>Years of Experience:</strong> @Model.ExperienceYears</p>
+                    <p><strong>Years of Experience:</strong> @(Model.ExperienceYears == null ? "Not provided" : Model.ExperienceYears.ToString())</p>
                 </div>
                 <div class="col-md-6">
-                    <p><strong>Preferred Work Location:</strong> @Model.PreferredLocation</p>
+                    <p><strong>Preferred Work Location:</strong> @(string.IsNullOrWhiteSpace(Model.PreferredLocation) ? "Not provided" : Model.PreferredLocation)</p>
                 </div>
             </div>
             <p>

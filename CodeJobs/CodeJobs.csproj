@@ -280,7 +280,7 @@
     <Content Include="Views\StaticPages\Terms.cshtml" />
     <Content Include="Views\StaticPages\Help.cshtml" />
     <Content Include="Views\StaticPages\Privacy.cshtml" />
-    <Content Include="Views\Jobs\UserAdd.cshtml" />
+    <Content Include="Views\User\UserAdd.cshtml" />
     <Content Include="Views\Jobs\JobsList.cshtml" />
     <Content Include="Views\Jobs\JobDetails.cshtml" />
     <Content Include="Views\User\MyProfile.cshtml" />

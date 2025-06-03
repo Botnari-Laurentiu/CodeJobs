@@ -8,7 +8,6 @@ namespace CodeJobs.DataAccess.Data
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext() : base("name=CodeJobsConnection") { }
-
         public DbSet<JobPost> JobPosts { get; set; }
         public DbSet<JobApplication> JobApplications { get; set; }
 
