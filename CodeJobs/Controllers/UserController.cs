@@ -1,28 +1,37 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
 using CodeJobs.Models;
-using CodeJobs.Business_Logic.Core.Services;
+using CodeJobs.Business_Logic.Interfaces;
 using CodeJobs.Domain.Entities.User;
+using System.Linq;
 
 namespace CodeJobs.Controllers
 {
     [Authorize]
     public class UserController : Controller
     {
-        private readonly UserService _userService;
+        private readonly IUserService _userService;
 
-        public UserController()
+        public UserController(IUserService userService)
         {
-            _userService = new UserService(new DataAccess.Data.ApplicationDbContext());
+            _userService = userService;
+        }
+
+        private async Task<ApplicationUser> GetCurrentUserAsync()
+        {
+            var userName = User.Identity.Name;
+            if (string.IsNullOrEmpty(userName))
+                return null;
+
+            var users = await _userService.GetAllUsers();
+            return users.FirstOrDefault(u => u.UserName == userName);
         }
 
         public async Task<ActionResult> MyProfile()
         {
-            var userId = User.Identity.GetUserId();
-            var user = await _userService.GetUserById(userId);
+            var user = await GetCurrentUserAsync();
             if (user == null)
-                return HttpNotFound();
+                return Content("Not authenticated!");
 
             var model = MapToViewModel(user);
             return View(model);
@@ -30,8 +39,7 @@ namespace CodeJobs.Controllers
 
         public async Task<ActionResult> UserAdd()
         {
-            var userId = User.Identity.GetUserId();
-            var user = await _userService.GetUserById(userId);
+            var user = await GetCurrentUserAsync();
             if (user == null)
                 return HttpNotFound();
 
@@ -46,7 +54,7 @@ namespace CodeJobs.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            var user = await _userService.GetUserById(User.Identity.GetUserId());
+            var user = await GetCurrentUserAsync();
             if (user == null)
                 return HttpNotFound();
 
@@ -59,7 +67,7 @@ namespace CodeJobs.Controllers
 
         public async Task<ActionResult> Edit()
         {
-            var user = await _userService.GetUserById(User.Identity.GetUserId());
+            var user = await GetCurrentUserAsync();
             if (user == null)
                 return HttpNotFound();
 
@@ -74,7 +82,7 @@ namespace CodeJobs.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            var user = await _userService.GetUserById(model.Id);
+            var user = await GetCurrentUserAsync();
             if (user == null)
                 return HttpNotFound();
 
@@ -87,7 +95,7 @@ namespace CodeJobs.Controllers
 
         public async Task<ActionResult> FindJobRedirect()
         {
-            var user = await _userService.GetUserById(User.Identity.GetUserId());
+            var user = await GetCurrentUserAsync();
             if (user == null)
                 return RedirectToAction("Login", "Auth");
 

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace CodeJobs.Models
 {
@@ -28,5 +23,9 @@ namespace CodeJobs.Models
         [Display(Name = "Confirm Password")]
         [Compare("Password", ErrorMessage = "Passwords do not match")]
         public string ConfirmPassword { get; set; }
+
+        [Required(ErrorMessage = "You must accept the terms.")]
+        [Display(Name = "Accept Terms")]
+        public bool AcceptTerms { get; set; }
     }
 }

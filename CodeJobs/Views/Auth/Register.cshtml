@@ -12,15 +12,17 @@
                         <div class="row justify-content-center">
                             <div class="col-md-10 col-lg-6 col-xl-5 order-lg-1 order-2">
 
-                                <p class="h1 fw-bold mb-5 mx-1 mx-md-4 mt-4 text-center">Sign up</p>
+                                <p class="h1 fw-bold mx-md-4 mx-1 mb-5 mt-4 text-center">Sign up</p>
 
                                 @using (Html.BeginForm("Register", "Auth", FormMethod.Post, new { @class = "mx-1 mx-md-4" }))
                                 {
                                     @Html.AntiForgeryToken()
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
 
                                     <!-- Name Input -->
                                     <div class="d-flex align-items-center mb-4 flex-row">
-                                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                        <i class="fas fa-user fa-lg fa-fw me-3"></i>
                                         <div class="form-outline flex-fill mb-0">
                                             @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
                                             <label class="form-label" for="form3Example1c">Your Name</label>
@@ -30,7 +32,7 @@
 
                                     <!-- Email Input -->
                                     <div class="d-flex align-items-center mb-4 flex-row">
-                                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                        <i class="fas fa-envelope fa-lg fa-fw me-3"></i>
                                         <div class="form-outline flex-fill mb-0">
                                             @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
                                             <label class="form-label" for="form3Example3c">Your Email</label>
@@ -40,7 +42,7 @@
 
                                     <!-- Password Input -->
                                     <div class="d-flex align-items-center mb-4 flex-row">
-                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                        <i class="fas fa-lock fa-lg fa-fw me-3"></i>
                                         <div class="form-outline flex-fill mb-0">
                                             @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
                                             <label class="form-label" for="form3Example4c">Password</label>
@@ -50,7 +52,7 @@
 
                                     <!-- Confirm Password Input -->
                                     <div class="d-flex align-items-center mb-4 flex-row">
-                                        <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                                        <i class="fas fa-key fa-lg fa-fw me-3"></i>
                                         <div class="form-outline flex-fill mb-0">
                                             @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
                                             <label class="form-label" for="form3Example4cd">Repeat your password</label>
@@ -60,14 +62,16 @@
 
                                     <!-- Terms and Conditions -->
                                     <div class="form-check d-flex justify-content-center mb-5">
-                                        <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" />
-                                        <label class="form-check-label" for="form2Example3">
-                                            I agree all statements in <a href="#!">Terms of service</a>
+                                        @Html.CheckBoxFor(m => m.AcceptTerms, new { @class = "form-check-input me-2", id = "form2Example3c" })
+                                        <label class="form-check-label" for="form2Example3c">
+                                            I agree all statements in <a href="@Url.Action("Terms", "StaticPages")">Terms of service</a>
                                         </label>
+                                        @Html.ValidationMessageFor(m => m.AcceptTerms, "", new { @class = "text-danger" })
                                     </div>
 
+
                                     <!-- Submit Button -->
-                                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                    <div class="d-flex justify-content-center mb-lg-4 mx-4 mb-3">
                                         <button type="submit" class="btn btn-primary btn-lg">Register</button>
                                     </div>
                                 }

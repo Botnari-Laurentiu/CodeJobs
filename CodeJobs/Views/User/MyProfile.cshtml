@@ -18,7 +18,7 @@
                     <p><strong>Last Name:</strong> @(string.IsNullOrWhiteSpace(Model.LastName) ? "Not provided" : Model.LastName)</p>
                 </div>
             </div>
-            <p><strong>Email:</strong> @(string.IsNullOrWhiteSpace(Model.Email) ? "Not provided" : $"<a href=\"mailto:{Model.Email}\">{Model.Email}</a>")</p>
+            <p><strong>Email:</strong> @(string.IsNullOrWhiteSpace(Model.Email) ? "Not provided" : Html.Raw($"<a href=\"mailto:{Model.Email}\">{Model.Email}</a>"))</p>
             <p>Phone Number: @(string.IsNullOrEmpty(Model.PhoneNumber) ? "No phone number provided" : Model.PhoneNumber)</p>
             <p><strong>Bio:</strong> @(string.IsNullOrWhiteSpace(Model.Bio) ? "Not provided" : Model.Bio)</p>
             <hr />

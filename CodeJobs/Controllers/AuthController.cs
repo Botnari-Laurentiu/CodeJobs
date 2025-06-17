@@ -1,10 +1,8 @@
-﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using System.Data.Entity.Validation;
-using System.Linq;
+﻿using System;
+using System.Threading.Tasks;
 using System.Web.Mvc;
-using System.Web.Security;  // pentru FormsAuthentication
-using CodeJobs.DataAccess.Data;
+using System.Web.Security;
+using CodeJobs.Business_Logic.Interfaces;
 using CodeJobs.Domain.Entities.User;
 using CodeJobs.Domain.Enums;
 using CodeJobs.Models;
@@ -14,12 +12,11 @@ namespace CodeJobs.Controllers
     [AllowAnonymous]
     public class AuthController : Controller
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IUserService _userService;
 
-        public AuthController()
+        public AuthController(IUserService userService)
         {
-            var userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
-            _userManager = new UserManager<ApplicationUser>(userStore);
+            _userService = userService;
         }
 
         // GET: /Auth/Register
@@ -31,7 +28,7 @@ namespace CodeJobs.Controllers
         // POST: /Auth/Register
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -43,30 +40,17 @@ namespace CodeJobs.Controllers
                     Role = UserRole.User
                 };
 
-                try
-                {
-                    var result = _userManager.Create(user, model.Password);
+                var result = await _userService.RegisterUser(user, model.Password);
 
-                    if (result.Succeeded)
-                    {
-                        return RedirectToAction("Login", "Auth");
-                    }
-                    else
-                    {
-                        foreach (var error in result.Errors)
-                        {
-                            ModelState.AddModelError("", error);
-                        }
-                    }
-                }
-                catch (DbEntityValidationException ex)
+                if (result.Succeeded)
                 {
-                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    return RedirectToAction("Login", "Auth");
+                }
+                else
+                {
+                    foreach (var error in result.Errors)
                     {
-                        foreach (var validationError in validationErrors.ValidationErrors)
-                        {
-                            ModelState.AddModelError("", $"Property: {validationError.PropertyName} Error: {validationError.ErrorMessage}");
-                        }
+                        ModelState.AddModelError("", error);
                     }
                 }
             }
@@ -83,12 +67,12 @@ namespace CodeJobs.Controllers
         // POST: /Auth/Login
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginViewModel model)
+        public async Task<ActionResult> Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = _userManager.Users.FirstOrDefault(u => u.Email == model.Email);
-                if (user != null && _userManager.CheckPassword(user, model.Password))
+                var user = await _userService.AuthenticateUser(model.Email, model.Password);
+                if (user != null)
                 {
                     FormsAuthentication.SetAuthCookie(user.UserName, false);
                     return RedirectToAction("HomeAuth", "Home");
