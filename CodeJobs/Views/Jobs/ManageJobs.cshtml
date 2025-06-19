@@ -1,0 +1,33 @@
+﻿@model IEnumerable<CodeJobs.Domain.Entities.JobPost>
+@{
+    ViewBag.Title = "Manage Jobs";
+    Layout = "~/Views/Shared/_LayoutAuth.cshtml";
+}
+<h2>Manage Jobs</h2>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Company</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var job in Model)
+    {
+        <tr>
+            <td>@job.Title</td>
+            <td>@job.CompanyName</td>
+            <td>
+                <a href="@Url.Action("Edit", "Jobs", new { id = job.Id })" class="btn btn-warning btn-sm">Edit</a>
+                @using (Html.BeginForm("Delete", "Jobs", FormMethod.Post, new { onsubmit = "return confirm('Are you sure?');" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden("id", job.Id)
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                }
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using CodeJobs.Business_Logic.Interfaces;
 using CodeJobs.Business_Logic.Repositories;
@@ -32,9 +33,29 @@ public class JobPostingService : IJobPostService
     {
         return await _jobPostRepository.GetJobPostById(jobId);
     }
+
+    // AICI trebuie să pui metodele:
     public async Task<List<JobPost>> GetJobPostsByUserId(string userId)
     {
         return await _jobPostRepository.GetJobPostsByUserId(userId);
     }
-}
 
+    public async Task<JobPost> UpdateJobPost(JobPost jobPost)
+    {
+        return await _jobPostRepository.UpdateJobPost(jobPost);
+    }
+
+    public async Task DeleteJobPost(int jobId)
+    {
+        await _jobPostRepository.DeleteJobPost(jobId);
+    }
+
+    public async Task<List<JobPost>> SearchJobPosts(string query)
+    {
+        var allJobs = await _jobPostRepository.GetAllJobPosts();
+        return allJobs
+            .Where(j => (j.Title != null && j.Title.ToLower().Contains(query.ToLower()))
+                        || (j.Description != null && j.Description.ToLower().Contains(query.ToLower())))
+            .ToList();
+    }
+}

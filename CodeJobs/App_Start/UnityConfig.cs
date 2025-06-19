@@ -1,4 +1,5 @@
 using System.Web.Mvc;
+using CodeJobs.Business_Logic.Core.Services;
 using Unity;
 using Unity.Injection;
 using Unity.Lifetime;
@@ -8,6 +9,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using CodeJobs.Domain.Entities.User;
 using CodeJobs.Business_Logic.Interfaces;
 using CodeJobs.DataAccess.Data;
+using CodeJobs.Business_Logic.Repositories; // Add this for JobPostRepository
 
 public static class UnityConfig
 {
@@ -28,6 +30,10 @@ public static class UnityConfig
 
         // Register your UserService
         container.RegisterType<IUserService, UserService>();
+
+        // Register JobPostRepository and JobPostingService
+        container.RegisterType<IJobPostRepository, JobPostRepository>();
+        container.RegisterType<IJobPostService, JobPostingService>();
 
         DependencyResolver.SetResolver(new UnityDependencyResolver(container));
     }

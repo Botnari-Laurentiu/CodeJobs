@@ -10,6 +10,9 @@ namespace CodeJobs.Business_Logic.Interfaces
         Task<List<JobPost>> GetAllJobPosts();
         Task<JobPost> GetJobPostById(int jobId);
         Task<List<JobPost>> GetJobPostsByUserId(string userId);
+        Task<JobPost> UpdateJobPost(JobPost jobPost);
+        Task DeleteJobPost(int jobId);
+
 
     }
 }

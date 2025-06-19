@@ -34,15 +34,36 @@ namespace CodeJobs.Business_Logic.Repositories
         {
             return await _context.JobPosts.FindAsync(jobId);
         }
+
         public async Task<List<JobPost>> GetJobPostsByUserId(string userId)
         {
-            using (var context = new ApplicationDbContext())
-            {
-                return await context.JobPosts
-                    .Where(j => j.UserId == userId)
-                    .ToListAsync();
-            }
+            return await _context.JobPosts
+                .Where(j => j.UserId == userId)
+                .ToListAsync();
         }
 
+
+        public async Task<JobPost> UpdateJobPost(JobPost jobPost)
+        {
+            var existing = await _context.JobPosts.FindAsync(jobPost.Id);
+            if (existing != null)
+            {
+                _context.Entry(existing).CurrentValues.SetValues(jobPost);
+                await _context.SaveChangesAsync();
+                return existing;
+            }
+            return null;
+        }
+
+
+        public async Task DeleteJobPost(int jobId)
+        {
+            var jobPost = await _context.JobPosts.FindAsync(jobId);
+            if (jobPost != null)
+            {
+                _context.JobPosts.Remove(jobPost);
+                await _context.SaveChangesAsync();
+            }
+        }
     }
 }
