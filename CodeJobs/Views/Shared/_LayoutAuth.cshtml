@@ -38,6 +38,13 @@
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="@Url.Action("Privacy", "Home")">Privacy</a>
                         </li>
+                        <!-- If the user is an Admin, show the Admin Dashboard link -->
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Dashboard", "Admin")">Admin Dashboard</a>
+                            </li>
+                        }
                     </ul>
 
                     <!-- BTN -->

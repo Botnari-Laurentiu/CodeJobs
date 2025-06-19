@@ -74,7 +74,21 @@ namespace CodeJobs.Controllers
                 var user = await _userService.AuthenticateUser(model.Email, model.Password);
                 if (user != null)
                 {
-                    FormsAuthentication.SetAuthCookie(user.UserName, false);
+                    var role = user.Role.ToString();
+
+                    var authTicket = new FormsAuthenticationTicket(
+                        1,
+                        user.UserName,
+                        DateTime.Now,
+                        DateTime.Now.AddMinutes(30),
+                        false,
+                        role // UserData = role
+                    );
+
+                    string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
+                    var authCookie = new System.Web.HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
+                    System.Web.HttpContext.Current.Response.Cookies.Add(authCookie);
+
                     return RedirectToAction("HomeAuth", "Home");
                 }
                 else

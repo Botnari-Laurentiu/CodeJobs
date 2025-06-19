@@ -47,4 +47,9 @@ public class UserService : IUserService
     {
         return Task.CompletedTask;
     }
+    public async Task DeleteUserAsync(ApplicationUser user)
+    {
+        await _userManager.DeleteAsync(user);
+    }
+
 }

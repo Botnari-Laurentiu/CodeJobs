@@ -1,9 +1,11 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using CodeJobs.Business_Logic.Interfaces;
 using CodeJobs.Filters;
 using CodeJobs.Models;
+using CodeJobs.Domain.Enums;
 
 namespace CodeJobs.Controllers
 {
@@ -37,14 +39,58 @@ namespace CodeJobs.Controllers
             return View(model);
         }
 
-        public ActionResult EditUser(string id)
+        // GET: /Admin/EditUser/{id}
+        public async Task<ActionResult> EditUser(string id)
         {
-            return HttpNotFound("Edit functionality is not implemented.");
+            var user = await _userService.GetUserById(id);
+            if (user == null)
+                return HttpNotFound();
+
+            var model = new UserViewModel
+            {
+                Id = user.Id,
+                FullName = user.FullName,
+                Email = user.Email,
+                Role = user.Role.ToString()
+            };
+            return View(model);
         }
 
-        public ActionResult DeleteUser(string id)
+        // POST: /Admin/EditUser/{id}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> EditUser(UserViewModel model)
         {
-            return HttpNotFound("Delete functionality is not implemented.");
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var user = await _userService.GetUserById(model.Id);
+            if (user == null)
+                return HttpNotFound();
+
+            user.FullName = model.FullName;
+            user.Email = model.Email;
+            user.Role = (UserRole)Enum.Parse(typeof(UserRole), model.Role, true);
+
+            await _userService.UpdateUser(user);
+            await _userService.SaveChangesAsync();
+
+            return RedirectToAction("ManageUsers");
+        }
+
+        // POST: /Admin/DeleteUser
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteUser(string id)
+        {
+            var user = await _userService.GetUserById(id);
+            if (user == null)
+                return HttpNotFound();
+
+            await _userService.DeleteUserAsync(user);
+            await _userService.SaveChangesAsync();
+
+            return RedirectToAction("ManageUsers");
         }
     }
 }

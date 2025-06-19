@@ -15,5 +15,6 @@ namespace CodeJobs.Business_Logic.Interfaces
 
         Task UpdateUser(ApplicationUser user);
         Task SaveChangesAsync();    
+        Task DeleteUserAsync(ApplicationUser user);
     }
 }
